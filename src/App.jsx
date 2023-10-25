@@ -18,6 +18,8 @@ import "./styles/login.css";
 import "./styles/pagina_produto.css";
 import "./styles/style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle";
+import "remixicon/fonts/remixicon.css";
 
 export default function App() {
   return (

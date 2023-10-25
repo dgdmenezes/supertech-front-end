@@ -1,28 +1,20 @@
 import React from "react";
-import Header from "../molecules/Header";
-import NavBar from "../molecules/NavBar";
+import HeaderGroup from "../organisms/HeaderGroup";
 import Carousel from "../molecules/Carousel";
 import CardGroup from "../organisms/CardGroup";
+import WhatsAppFloater from "../molecules/WhatsAppFloater";
 import Footer from "../organisms/Footer";
 
 export default function Home() {
   return (
-    <div>
-      <div>
-        <Header />
-      </div>
-      <div>
-        <NavBar />
-      </div>
-      <div>
+    <div class="container shadow">
+      <header class="row">
+        <HeaderGroup />
         <Carousel />
-      </div>
-      <div>
         <CardGroup />
-      </div>
-      <div>
         <Footer />
-      </div>
+        <WhatsAppFloater />
+      </header>
     </div>
   );
 }
