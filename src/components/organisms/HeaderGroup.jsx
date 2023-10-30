@@ -4,9 +4,9 @@ import NavBar from "../molecules/NavBar";
 
 export default function HeaderGroup() {
   return (
-    <div>
+    <header>
       <Header />
       <NavBar />
-    </div>
+    </header>
   );
 }

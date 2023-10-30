@@ -11,15 +11,17 @@ import Login from "./components/pages/Login";
 import ProductPage from "./components/pages/ProductPage";
 import RegisterForm from "./components/pages/RegisterForm";
 import Home from "./components/pages/Home";
+import Err404 from "./components/pages/Err404";
+import AppLoading from "./components/organisms/AppLoading";
 
 // importação de estilo
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle";
+import "remixicon/fonts/remixicon.css";
 import "./styles/cadastro.css";
 import "./styles/login.css";
 import "./styles/pagina_produto.css";
 import "./styles/style.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle";
-import "remixicon/fonts/remixicon.css";
 
 export default function App() {
   return (
@@ -27,13 +29,15 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/product" element={<ProductPage />} />
+        <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/category" element={<CategoryPage />} />
         <Route path="/customer" element={<CustomerPage />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/register/address" element={<AddressForm />} />
         <Route path="/chart" element={<ChartPage />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/test" element={<AppLoading />} />
+        <Route path="*" element={<Err404 />} />
       </Routes>
     </BrowserRouter>
   );

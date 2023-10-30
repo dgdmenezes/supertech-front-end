@@ -1,20 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import shoppingCartLineWhite from "../../images/shopping-cart-line-white.svg";
+import CartModal from "../organisms/CartModal";
+
 export default function HeaderCartIcon() {
+  const [show, setShow] = React.useState(false);
   return (
     <div>
-      <Link to="#" className="d-block">
-        <img
-          src={shoppingCartLineWhite}
-          alt="mdo"
-          width="32"
-          height="32"
-          className=""
-          data-bs-toggle="modal"
-          data-bs-target="#modalExibirCarrinho"
-        />
-      </Link>
+      <CartModal show={show} setShow={setShow} />
+      <img
+        src={shoppingCartLineWhite}
+        alt="mdo"
+        width="32"
+        height="32"
+        className=""
+        onClick={() => setShow(true)}
+      />
+
       <div id="contadorCarrinhoDiv">
         <p id="contadorCarrinho" className="">
           00
