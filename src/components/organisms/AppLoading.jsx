@@ -3,7 +3,7 @@ import Loading from "../atoms/Loading";
 
 export default function AppLoading() {
   return (
-    <div className="bg-light">
+    <div className="">
       <h1> Carregando...</h1>
       <Loading />
     </div>

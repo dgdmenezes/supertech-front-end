@@ -12,7 +12,7 @@ import ProductPage from "./components/pages/ProductPage";
 import RegisterForm from "./components/pages/RegisterForm";
 import Home from "./components/pages/Home";
 import Err404 from "./components/pages/Err404";
-import AppLoading from "./components/organisms/AppLoading";
+import BreadCrumbsI from "./components/organisms/BreadCrumbsI";
 
 // importação de estilo
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -36,7 +36,7 @@ export default function App() {
         <Route path="/register/address" element={<AddressForm />} />
         <Route path="/chart" element={<ChartPage />} />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/test" element={<AppLoading />} />
+        <Route path="/test" element={<BreadCrumbsI />} />
         <Route path="*" element={<Err404 />} />
       </Routes>
     </BrowserRouter>
