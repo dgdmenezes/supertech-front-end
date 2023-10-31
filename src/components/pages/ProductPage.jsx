@@ -1,13 +1,14 @@
 import React from "react";
 import Default from "../templates/Default";
-import Card from "../molecules/Card";
-import image from "../../images/prodimages/product123.jpg";
+import CardGroup from "../organisms/CardGroup";
+
 import BreadCrumbsI from "../organisms/BreadCrumbsI";
 import ProductSpecs from "../organisms/ProductSpecs";
 import ProductReview from "../organisms/ProductReview";
 import ProductShow from "../organisms/ProductShow";
 
 export default function ProductPage() {
+  const endpoint = "products/index/0/4";
   return (
     <Default>
       <div className="bg-light">
@@ -17,12 +18,8 @@ export default function ProductPage() {
           <ProductSpecs />
         </div>
         <div class="px-5">
-          <div class="row g-3 container-card">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-          </div>
+          <h4>Você também pode se interessar por:</h4>
+          <CardGroup endpoint={endpoint} />
         </div>
         <ProductReview />
       </div>

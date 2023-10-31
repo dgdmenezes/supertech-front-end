@@ -4,10 +4,11 @@ import Carousel from "../molecules/Carousel";
 import CardGroup from "../organisms/CardGroup";
 
 export default function Home() {
+  const endpoint = "products";
   return (
     <Default>
       <Carousel />
-      <CardGroup />
+      <CardGroup endpoint={endpoint} />
     </Default>
   );
 }

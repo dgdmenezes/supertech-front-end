@@ -5,7 +5,7 @@ import CarouselImageC from "../../images/carrosselC.webp";
 
 export default function Carousel() {
   return (
-    <div className="container">
+    <div className="container ">
       <div className="col">
         <div
           id="carouselExampleAutoplaying"

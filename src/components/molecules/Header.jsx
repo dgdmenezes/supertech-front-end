@@ -9,7 +9,7 @@ import React from "react";
 
 export default function Header() {
   return (
-    <div className="row">
+    <div className="row ">
       <div className="col-xs-12 col-sm-12 col-md-3 col-xl-2 fora-logo">
         <HeaderLogo />
       </div>
