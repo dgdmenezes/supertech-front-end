@@ -1,4 +1,5 @@
 import React from "react";
+import Rating from "@mui/material/Rating";
 
 export default function ProductReview() {
   return (
@@ -11,7 +12,15 @@ export default function ProductReview() {
           Usuário: <span>Dante</span>
         </p>
 
-        <p>(20/10/2023) - 5/5 estrelas</p>
+        <p>
+          (20/10/2023) -
+          <Rating
+            name="half-rating-read"
+            defaultValue={5}
+            precision={1}
+            readOnly
+          />
+        </p>
         <p>
           Esse monitor é incrível, a fidelidade de suas cores me fez ser mais
           acertivo no meu trabalho. Excelente produto, recomendo.{" "}
@@ -20,7 +29,15 @@ export default function ProductReview() {
         <p>
           Usuário: <span>João</span>
         </p>
-        <p>(15/05/2023) 4/5 estrelas</p>
+        <p>
+          (15/05/2023){" "}
+          <Rating
+            name="half-rating-read"
+            defaultValue={4}
+            precision={1}
+            readOnly
+          />
+        </p>
         <p>
           O monitor é bom, cumpre o que promete, mas não superou minhas
           espectativas.{" "}
