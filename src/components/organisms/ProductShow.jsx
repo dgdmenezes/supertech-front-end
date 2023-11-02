@@ -1,62 +1,76 @@
 import React from "react";
-import image from "../../images/prodimages/product123.jpg";
 
-export default function ProductShow() {
+export default function ProductShow(props) {
   return (
-    <div class="row ">
-      <div class="offset-1 col-1 div-group-thumb-image">
-        <div class="div-thumb-image">
-          <img src={image} class="thumb-image" alt="" />
+    <div className="row ">
+      <div className="offset-1 col-1 div-group-thumb-image">
+        <div className="div-thumb-image">
+          <img src={props.product.image} className="thumb-image" alt="" />
         </div>
-        <div class="div-thumb-image">
-          <img src={image} class="thumb-image" alt="" />
+        <div className="div-thumb-image">
+          <img src={props.product.image} className="thumb-image" alt="" />
         </div>
-        <div class="div-thumb-image">
-          <img src={image} class="thumb-image" alt="" />
+        <div className="div-thumb-image">
+          <img src={props.product.image} className="thumb-image" alt="" />
         </div>
-        <div class="div-thumb-image">
-          <img src={image} class="thumb-image" alt="" />
+        <div className="div-thumb-image">
+          <img src={props.product.image} className="thumb-image" alt="" />
         </div>
       </div>
 
-      <div class="col-4 div-show-product">
+      <div className="col-4 div-show-product">
         <div>
-          <img src={image} class="product-show-image" alt="" />
+          <img
+            src={props.product.image}
+            className="product-show-image"
+            alt=""
+          />
         </div>
       </div>
 
-      <div class="col-4">
-        <h6>Monitor Dell UltraSharp de 23.8” U2422H</h6>
-        <p>De: R$ 1.579,00</p>
-        <p>Por: R$ 1.579,00</p>
-        <p>No cartão: R$1.579,00 em até 12x de</p>
-        <p>No Boleto: R$ 1.500,05 (5% OFF)</p>
-        <div class="row">
-          <div class="d-flex justify-content-around mb-3">
-            <div class="d-flex flex-row justify-content-around align-items-center">
-              <label for="inputFrete">Calcular Frete:</label>
+      <div className="col-4">
+        <h6>
+          {props.product.category} {props.product.brand} {props.product.name}
+        </h6>
+        <p>De: {props.product.price}</p>
+        <p>
+          {props.product.price}
+          preciso ter um price com desconto ?
+        </p>
+        <p>
+          No cartão: {props.product.price}
+          em até 12x de{" "}
+        </p>
+        <p>
+          No Boleto: {props.product.price}
+          (5% OFF)
+        </p>
+        <div className="row">
+          <div className="d-flex justify-content-around mb-3">
+            <div className="d-flex flex-row justify-content-around align-items-center">
+              <label htmlFor="inputFrete">Calcular Frete:</label>
               <input
-                class="form-control rounded-3 mb-2"
+                className="form-control rounded-3 mb-2"
                 type="text"
-                maxlength="9"
+                maxLength={9}
                 id="inputFrete"
                 placeholder="Digite seu cep"
               />
             </div>
             <div>
-              <button class="btn btn-primary" id="inputFrete">
+              <button className="btn btn-primary" id="inputFrete">
                 OK
               </button>
             </div>
           </div>
         </div>
         <div>
-          <div class="d-flex align-items-center justify-content-evenly">
+          <div className="d-flex align-items-center justify-content-evenly">
             <div>
               <p>Quantidade:</p>
             </div>
             <div>
-              <button class="btn btn-primary mb-3" id="plusItem">
+              <button className="btn btn-primary mb-3" id="plusItem">
                 +
               </button>
             </div>
@@ -64,14 +78,14 @@ export default function ProductShow() {
               <p>1</p>
             </div>
             <div>
-              <button class="btn btn-primary mb-3" id="MinusItem">
+              <button className="btn btn-primary mb-3" id="MinusItem">
                 -
               </button>
             </div>
           </div>
-          <div class="d-flex ">
+          <div className="d-flex ">
             <div>
-              <button class="btn btn-primary mb-3" id="addCarrinho">
+              <button className="btn btn-primary mb-3" id="addCarrinho">
                 comprar
               </button>
             </div>

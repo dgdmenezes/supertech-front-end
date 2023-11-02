@@ -6,8 +6,8 @@ import WhatsAppFloater from "../molecules/WhatsAppFloater";
 
 export default function Default(props) {
   return (
-    <div class="container shadow">
-      <div class="row bg-light">
+    <div className="container shadow">
+      <div className="row bg-light">
         <HeaderGroup />
         {props.children}
         <Footer />

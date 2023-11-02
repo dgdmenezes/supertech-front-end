@@ -15,7 +15,7 @@ export default function RegisterForm() {
               <fieldset>
                 <legend>Dados da conta</legend>
                 <form className="">
-                  <label for="email">
+                  <label htmlFor="email">
                     <span className="detalhe-red">*</span>email
                   </label>
                   <input
@@ -26,7 +26,7 @@ export default function RegisterForm() {
                     placeholder="Ex.: email@mail.com"
                   />
 
-                  <label for="inputPassword">
+                  <label htmlFor="inputPassword">
                     <span className="detalhe-red">*</span>senha
                   </label>
                   <input
@@ -52,7 +52,7 @@ export default function RegisterForm() {
                 <legend>Dados Pessoais</legend>
 
                 <div className="mb-3">
-                  <label for="inputNome">
+                  <label htmlFor="inputNome">
                     <span className="detalhe-red">*</span>nome completo
                   </label>
                   <input
@@ -76,7 +76,10 @@ export default function RegisterForm() {
                       name="flexRadioDefault"
                       id="masculino-genero"
                     />
-                    <label className="form-check-label" for="masculino-genero">
+                    <label
+                      className="form-check-label"
+                      htmlFor="masculino-genero"
+                    >
                       masculino
                     </label>
                   </div>
@@ -88,7 +91,10 @@ export default function RegisterForm() {
                       id="feminino-genero"
                       checked=""
                     />
-                    <label className="form-check-label" for="feminino-genero">
+                    <label
+                      className="form-check-label"
+                      htmlFor="feminino-genero"
+                    >
                       feminino
                     </label>
                   </div>
@@ -100,13 +106,13 @@ export default function RegisterForm() {
                       id="outro-genero"
                       checked=""
                     />
-                    <label className="form-check-label" for="outro-genero">
+                    <label className="form-check-label" htmlFor="outro-genero">
                       outro
                     </label>
                   </div>
                 </div>
 
-                <label for="iputNascimento">
+                <label htmlFor="iputNascimento">
                   <span className="detalhe-red">*</span>Data de Nascimento
                 </label>
                 <input
@@ -117,7 +123,7 @@ export default function RegisterForm() {
                   placeholder="Ex.: DD/MM/AAAA"
                 />
 
-                <label for="inputCPF">
+                <label htmlFor="inputCPF">
                   <span className="detalhe-red">*</span>CPF
                 </label>
                 <input
@@ -128,7 +134,7 @@ export default function RegisterForm() {
                   placeholder="Ex.:Digite o CPF"
                 />
 
-                <label for="inputTelefone">
+                <label htmlFor="inputTelefone">
                   <span className="detalhe-red">*</span>Telefone
                 </label>
                 <input

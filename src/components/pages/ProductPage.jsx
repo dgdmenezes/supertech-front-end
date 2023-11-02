@@ -6,20 +6,32 @@ import BreadCrumbsI from "../organisms/BreadCrumbsI";
 import ProductSpecs from "../organisms/ProductSpecs";
 import ProductReview from "../organisms/ProductReview";
 import ProductShow from "../organisms/ProductShow";
+import { useParams } from "react-router-dom";
 
 export default function ProductPage() {
-  const endpoint = "products/index/0/4";
+  const endpointCard = "products/index/0/4";
+  const { productId } = useParams();
+  const [product, setProduct] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch(`http://localhost:3001/products/${productId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setProduct(data);
+      });
+  }, [productId]);
+
   return (
     <Default>
       <div className="bg-light">
-        <div class="base-produto-div">
+        <div className="base-produto-div">
           <BreadCrumbsI />
-          <ProductShow />
+          <ProductShow product={product} setProduct={setProduct} />
           <ProductSpecs />
         </div>
-        <div class="px-5">
+        <div className="px-5">
           <h4>Você também pode se interessar por:</h4>
-          <CardGroup endpoint={endpoint} />
+          <CardGroup endpoint={endpointCard} />
         </div>
         <ProductReview />
       </div>

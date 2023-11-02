@@ -2,10 +2,10 @@ import React from "react";
 
 export default function HeaderSearchBar() {
   return (
-    <form class="w-100 me-3" role="search">
+    <form className="w-100 me-3" role="search">
       <input
         type="search"
-        class="form-control"
+        className="form-control"
         placeholder="Buscar..."
         aria-label="Search"
       />
