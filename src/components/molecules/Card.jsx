@@ -3,11 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Card(props) {
   return (
-    <div
-      className="col-sm-6 col-md-4 col-lg-3"
-      id={props.product._id}
-      key={props.product._id}
-    >
+    <div className="col-sm-6 col-md-4 col-lg-3" id={props.product._id}>
       <div className="card border-primary card-back-style shadow">
         <img
           className="card-img-top card-img-dimensions"

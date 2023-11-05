@@ -1,0 +1,27 @@
+.bodyAdmin{
+    background-color: white;
+    margin: 3rem;
+    padding: 0 2rem 1rem 2rem;
+}
+
+.divForms{
+    background-color: lightgray;
+    padding: 0 2rem 0 2rem;
+}
+.medium{
+    width: 33rem;
+}
+
+label{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+label span{
+    color: red;
+}
+.borderFieldSet{
+    border: 1px solid black;
+    padding: 1rem;
+    width: 35rem;
+}

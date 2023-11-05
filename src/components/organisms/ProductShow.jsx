@@ -5,16 +5,36 @@ export default function ProductShow(props) {
     <div className="row ">
       <div className="offset-1 col-1 div-group-thumb-image">
         <div className="div-thumb-image">
-          <img src={props.product.image} className="thumb-image" alt="" />
+          <img
+            src={props.product.image}
+            onClick={() => console.log("btn-1")}
+            className="thumb-image"
+            alt=""
+          />
         </div>
         <div className="div-thumb-image">
-          <img src={props.product.image} className="thumb-image" alt="" />
+          <img
+            src={props.product.image}
+            onClick={() => console.log("btn-2")}
+            className="thumb-image"
+            alt=""
+          />
         </div>
         <div className="div-thumb-image">
-          <img src={props.product.image} className="thumb-image" alt="" />
+          <img
+            src={props.product.image}
+            onClick={() => console.log("btn-3")}
+            className="thumb-image"
+            alt=""
+          />
         </div>
         <div className="div-thumb-image">
-          <img src={props.product.image} className="thumb-image" alt="" />
+          <img
+            src={props.product.image}
+            onClick={() => console.log("btn-4")}
+            className="thumb-image"
+            alt=""
+          />
         </div>
       </div>
 

@@ -20,9 +20,9 @@ export default function CardGroup(props) {
     <AppLoading />
   ) : (
     <div className="px-2 py-3">
-      <div className="row g-3 container-card" key="3201050651">
+      <div className="row g-3 container-card">
         {products.map((product) => (
-          <Card product={product} />
+          <Card product={product} key={product._id} />
         ))}
       </div>
     </div>
