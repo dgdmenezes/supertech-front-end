@@ -13,7 +13,7 @@ import RegisterForm from "./components/pages/RegisterForm";
 import Home from "./components/pages/Home";
 import Err404 from "./components/pages/Err404";
 import AdminRegisterProduct from "./components/pages/AdminRegisterProduct";
-import BreadCrumbsI from "./components/organisms/BreadCrumbsI";
+import CardPagination from "./components/molecules/CardPagination";
 
 // importação de estilo
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -31,13 +31,13 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/product/:productId" element={<ProductPage />} />
-        <Route path="/category" element={<CategoryPage />} />
+        <Route path="/category/:categoryName" element={<CategoryPage />} />
         <Route path="/customer" element={<CustomerPage />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/register/address" element={<AddressForm />} />
         <Route path="/chart" element={<ChartPage />} />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/test" element={<BreadCrumbsI />} />
+        <Route path="/test" element={<CardPagination />} />
         <Route path="/admin" element={<AdminRegisterProduct />} />
         <Route path="*" element={<Err404 />} />
       </Routes>

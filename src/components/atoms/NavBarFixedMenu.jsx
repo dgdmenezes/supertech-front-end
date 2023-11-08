@@ -5,44 +5,30 @@ export default function NavBarFixedMenu() {
   return (
     <div>
       <ul className="nav me-auto">
-        <li className="nav-item ">
+        <li className="nav-item">
           <Link
-            to="#"
-            className="nav-link link-body-emphasis px-2 link-nav-menu"
+            to="/category/consoles"
+            className="nav-link  px-2 link-nav-menu"
           >
-            Ofertas
+            Consoles
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/category/jogos" className="nav-link  px-2 link-nav-menu">
+            Jogos
           </Link>
         </li>
         <li className="nav-item">
           <Link
-            to="#"
-            className="nav-link link-body-emphasis px-2 link-nav-menu"
+            to="/category/acessorios"
+            className="nav-link  px-2 link-nav-menu"
           >
-            Lançamentos
+            Acessórios
           </Link>
         </li>
         <li className="nav-item">
-          <Link
-            to="#"
-            className="nav-link link-body-emphasis px-2 link-nav-menu"
-          >
-            Notebooks
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link
-            to="#"
-            className="nav-link link-body-emphasis px-2 link-nav-menu"
-          >
-            Smartphones
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link
-            to="#"
-            className="nav-link link-body-emphasis px-2 link-nav-menu"
-          >
-            Games
+          <Link to="/promo" className="nav-link px-2 link-nav-menu">
+            Promoções
           </Link>
         </li>
       </ul>

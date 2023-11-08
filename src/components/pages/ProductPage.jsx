@@ -9,7 +9,7 @@ import ProductShow from "../organisms/ProductShow";
 import { useParams } from "react-router-dom";
 
 export default function ProductPage() {
-  const endpointCard = "products/index/0/4";
+  const URL = "http://localhost:3001/products/index/index?skip=0&limit=4";
   const { productId } = useParams();
   const [product, setProduct] = React.useState([]);
 
@@ -31,7 +31,7 @@ export default function ProductPage() {
         </div>
         <div className="px-5">
           <h4>Você também pode se interessar por:</h4>
-          <CardGroup endpoint={endpointCard} />
+          <CardGroup URL={URL} />
         </div>
         <ProductReview />
       </div>

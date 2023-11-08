@@ -9,42 +9,22 @@ export default function NavBarDropDownMenu() {
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        Categoria
+        Categorias
       </Link>
       <ul className="dropdown-menu text-small shadow">
         <li>
           <Link className="dropdown-item active" to="#" aria-current="page">
-            Overview
+            Consoles
           </Link>
         </li>
         <li>
           <Link className="dropdown-item" to="#">
-            Ofertas
+            Jogos
           </Link>
         </li>
         <li>
           <Link className="dropdown-item" to="#">
-            Lançamentos
-          </Link>
-        </li>
-        <li>
-          <Link className="dropdown-item" to="#">
-            Notebook
-          </Link>
-        </li>
-        <li>
-          <hr className="dropdown-divider" />
-        </li>
-        <li>
-          <Link className="dropdown-item" to="#">
-            {" "}
-            Periféricos
-          </Link>
-        </li>
-        <li>
-          <Link className="dropdown-item" to="#">
-            {" "}
-            Analytics
+            Acessórios
           </Link>
         </li>
       </ul>

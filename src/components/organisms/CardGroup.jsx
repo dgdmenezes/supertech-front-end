@@ -3,7 +3,7 @@ import AppLoading from "./AppLoading";
 import Card from "../molecules/Card";
 
 export default function CardGroup(props) {
-  const URI = `http://localhost:3001/${props.endpoint}`;
+  const URI = props.URL;
   const [products, setProducts] = React.useState([]);
   const [isLoading, SetIsLoading] = React.useState(true);
 
