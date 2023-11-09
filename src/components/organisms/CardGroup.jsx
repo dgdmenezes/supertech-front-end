@@ -13,6 +13,7 @@ export default function CardGroup(props) {
       .then((data) => {
         setProducts(data);
         SetIsLoading(false);
+        console.log("cardGroup Fetch", URI);
       });
   }, [URI]);
 

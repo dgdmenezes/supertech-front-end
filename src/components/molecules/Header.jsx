@@ -13,14 +13,14 @@ export default function Header() {
       <div className="col-xs-12 col-sm-12 col-md-3 col-xl-2 fora-logo">
         <HeaderLogo />
       </div>
-      <div className="d-flex col-xs-6 col-sm-12 col-md-5 col-xl-8 align-items-center py-4">
+      <div className="d-flex col-xs-6 col-sm-12 col-md-5 col-xl-8 align-items-center ">
         <HeaderSearchBar />
       </div>
-      <div className="col-xs-1 col-sm-1 col-md-1 col-xl-1 header-icon-button py-4">
+      <div className="col-xs-1 col-sm-1 col-md-1 col-xl-1 header-icon-button ">
         <HeaderDropDownIconLogin />
       </div>
 
-      <div className="col-xs-1 col-sm-1 col-md-1 col-xl-1 header-icon-button py-4">
+      <div className="col-xs-1 col-sm-1 col-md-1 col-xl-1 header-icon-button ">
         <HeaderCartIcon />
       </div>
     </div>

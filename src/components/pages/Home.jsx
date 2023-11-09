@@ -4,7 +4,7 @@ import Carousel from "../molecules/Carousel";
 import CardGroup from "../organisms/CardGroup";
 
 export default function Home() {
-  const URL = "http://localhost:3001/products/";
+  const URL = "http://localhost:3001/products/index/index?skip=0&limit=12";
   return (
     <Default>
       <Carousel />

@@ -1,10 +1,10 @@
 import React from "react";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import "./CardPagination.module.css";
+import styles from "./CardPagination.module.css";
 
 export default function CardPagination(props) {
-  const [page, setPage] = React.useState(1);
+  const [page, setPage] = React.useState(0);
   const [count, setCount] = React.useState(1);
   const URLcount = props.URLCount;
   const cardLimitShow = props.cardLimitShow;
@@ -20,34 +20,23 @@ export default function CardPagination(props) {
         if (data[0].counter > cardLimitShow)
           setCount(parseInt(data[0].counter / cardLimitShow) + 1);
       });
-  }, [URLcount, cardLimitShow]);
+    props.setSkip(page);
+    props.setLimit(page + cardLimitShow);
+  }, [URLcount, cardLimitShow, page, props.setSkip, props.setLimit]);
 
   return (
-    <div id="pagination">
-      <h1>{page}</h1>
-      <Stack spacing={2}>
+    <div className={styles.outerPagination}>
+      <Stack spacing={2} alignItems="center">
         <Pagination
           count={count}
-          defaultPage={page}
+          defaultPage={1}
           boundaryCount={2}
           siblingCount={0}
           color="primary"
           onChange={handleChange}
+          className={styles.pagination}
         />
       </Stack>
     </div>
   );
 }
-/* fetch(URLcount)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("cards", data[0].counter);
-        if (data[0].counter > 12) {
-          let restCounter = data[0].counter / 12;
-          parseInt(restCounter);
-          setCount(restCounter);
-        } else {
-          setCount(1);
-        }
-        console.log(count);
-      });*/
