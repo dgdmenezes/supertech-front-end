@@ -7,30 +7,27 @@ export default function CardPagination(props) {
   const [page, setPage] = React.useState(1);
   const [count, setCount] = React.useState(1);
   const URLcount = props.URLCount;
-  const handleChange = (event, value) => {
-    setPage(value);
+  const cardLimitShow = props.cardLimitShow;
 
+  const handleChange = (event, value) => {
+    setPage((value - 1) * cardLimitShow);
+  };
+
+  React.useEffect(() => {
     fetch(URLcount)
       .then((res) => res.json())
       .then((data) => {
-        console.log("cards", data[0].counter);
-        console.log("Resto", data[0].counter % 12);
-
-        if (data[0].counter > 12) {
-          let restCounter = data[0].counter % 12;
-          setCount(restCounter);
-        } else {
-          setCount(1);
-        }
-        console.log(count);
+        if (data[0].counter > cardLimitShow)
+          setCount(parseInt(data[0].counter / cardLimitShow) + 1);
       });
-  };
+  }, [URLcount, cardLimitShow]);
+
   return (
     <div id="pagination">
       <h1>{page}</h1>
       <Stack spacing={2}>
         <Pagination
-          count={100}
+          count={count}
           defaultPage={page}
           boundaryCount={2}
           siblingCount={0}
@@ -41,12 +38,16 @@ export default function CardPagination(props) {
     </div>
   );
 }
-<button
-  class="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-sizeMedium MuiPaginationItem-text MuiPaginationItem-circular MuiPaginationItem-textPrimary Mui-selected MuiPaginationItem-page css-1to7aaw-MuiButtonBase-root-MuiPaginationItem-root"
-  tabindex="0"
-  type="button"
-  aria-label="page 5"
-  aria-current="true"
->
-  5<span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span>
-</button>;
+/* fetch(URLcount)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("cards", data[0].counter);
+        if (data[0].counter > 12) {
+          let restCounter = data[0].counter / 12;
+          parseInt(restCounter);
+          setCount(restCounter);
+        } else {
+          setCount(1);
+        }
+        console.log(count);
+      });*/
