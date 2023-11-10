@@ -10,13 +10,19 @@ export default function HeaderDropDownIconLogin() {
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        <img
-          src={boxLineWhite}
-          alt="mdo"
-          width="32"
-          height="32"
-          className="rounded-circle"
-        />
+        <div className="d-flex align-items-end">
+          <div>
+            <div>
+              <img
+                src={boxLineWhite}
+                alt="mdo"
+                width="32"
+                height="32"
+                className="rounded-circle d-flex"
+              />
+            </div>
+          </div>
+        </div>
       </Link>
       <ul className="dropdown-menu text-small shadow">
         <li>

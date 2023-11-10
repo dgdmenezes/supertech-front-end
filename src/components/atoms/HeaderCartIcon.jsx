@@ -5,7 +5,7 @@ import CartModal from "../organisms/CartModal";
 export default function HeaderCartIcon() {
   const [show, setShow] = React.useState(false);
   return (
-    <div>
+    <div className="">
       <CartModal show={show} setShow={setShow} />
       <img
         src={shoppingCartLineWhite}

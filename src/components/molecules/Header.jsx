@@ -10,17 +10,17 @@ import React from "react";
 export default function Header() {
   return (
     <div className="row ">
-      <div className="col-xs-12 col-sm-12 col-md-3 col-xl-2 fora-logo">
+      <div className="col-8 offset-2 col-sm-8 offset-sm-2 col-md-3 offset-md-0 col-xl-2 offset-xl-0 col-xxl-2 offset-xxl-0 fora-logo">
         <HeaderLogo />
       </div>
-      <div className="d-flex col-xs-6 col-sm-12 col-md-5 col-xl-8 align-items-center ">
+      <div className="d-flex col-6 offset-1 col-xs-6 col-sm-7 offset-sm-1  col-md-7 offset-md-0 col-xl-8 offset-xl-0 col-xxl-7 offset-xxl-0 align-items-center">
         <HeaderSearchBar />
       </div>
-      <div className="col-xs-1 col-sm-1 col-md-1 col-xl-1 header-icon-button ">
+      <div className="col-1 col-sm-1 col-md-1 col-xl-1 offset-xl-0 col-xxl-1 offset-xxl-0">
         <HeaderDropDownIconLogin />
       </div>
 
-      <div className="col-xs-1 col-sm-1 col-md-1 col-xl-1 header-icon-button ">
+      <div className="col-1 col-sm-1 col-md-1 col-xl-1 col-xl-1 offset-xl-0 offset-xxl-0">
         <HeaderCartIcon />
       </div>
     </div>
