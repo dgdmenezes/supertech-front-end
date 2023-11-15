@@ -4,7 +4,7 @@ import NavBar from "../molecules/NavBar";
 
 export default function HeaderGroup() {
   return (
-    <header>
+    <header className="flex-row">
       <Header />
       <NavBar />
     </header>

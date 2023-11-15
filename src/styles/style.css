@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
 #root {
     height: 100%;
   }
@@ -58,11 +60,17 @@
 }
 
 header{
-    background-color: #0060b1;
+    background-color: #0060b1;/*0060b1, fb8013*/
 }
 
+.navBar{
+    background-color:#fb8013;/*034377 / cc5f00 /0060b1*/
+    
+}
+
+
 body{
-    background-color:#08284c;
+    background-color:#08284c;/*08284c*/
 }
 
 .header-icon-button{
@@ -72,14 +80,15 @@ body{
 
 #contadorCarrinhoDiv{
    text-align: center;
+   color: #FFF;
    justify-content: center;
    border: #a44e08 solid 0.5px;
    background-color: #ff6500;
    border-radius: 30%;
    display: block;
    position: relative;
-   bottom: 3.125rem;
-   left: 1.5625rem;
+   bottom: 2.5rem;
+   left: 1.7rem;
    width: 1.5rem;
    height: 1.6rem;
 }
@@ -87,24 +96,25 @@ body{
 
 
 .link-nav-menu{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
     text-decoration: none;
+    font-size: 1rem;
     color: #FFF;
     text-align: center;
     transition: 0.4s;
-    font-weight:500;
-    
 }
 
 .link-nav-menu:visited{
     text-decoration: none;
-    color: #FFF;
-        
+    color: #FFF;      
 }
 
 .link-nav-menu:hover{
-    text-decoration: underline;
+    text-decoration: none;
     text-align: center;
-    color: white;
+    color: #FFF;
+    background-color: #e35214;
 }
 
 .carrossel{
@@ -175,6 +185,9 @@ tr span{
     border: 1px solid #a44e08;
     
 
+}
+.CardIconDiv{
+    padding-right: 1.25rem;
 }
 
 .card-img-dimensions{

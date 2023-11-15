@@ -10,12 +10,12 @@ export default function NavBarFixedMenu() {
             to="/category/consoles"
             className="nav-link  px-2 link-nav-menu"
           >
-            Consoles
+            CONSOLES
           </Link>
         </li>
         <li className="nav-item">
           <Link to="/category/jogos" className="nav-link  px-2 link-nav-menu">
-            Jogos
+            JOGOS
           </Link>
         </li>
         <li className="nav-item">
@@ -23,12 +23,12 @@ export default function NavBarFixedMenu() {
             to="/category/acessorios"
             className="nav-link  px-2 link-nav-menu"
           >
-            Acessórios
+            ACESSÓRIOS
           </Link>
         </li>
         <li className="nav-item">
           <Link to="/promo" className="nav-link px-2 link-nav-menu">
-            Promoções
+            PROMOCOES
           </Link>
         </li>
       </ul>

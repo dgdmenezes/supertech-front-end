@@ -13,7 +13,7 @@ export default function CategoryPage() {
 
   const URL = `http://localhost:3001/products/find/find?category=${categoryName}&skip=${skip}&limit=${limit}`;
   const URLCount = `http://localhost:3001/products/find/count?category=${categoryName}`;
-  console.log("URL", URL);
+
   return (
     <Default>
       <CardGroup URL={URL} />

@@ -89,7 +89,6 @@ export default function RegisterForm() {
                       type="radio"
                       name="flexRadioDefault"
                       id="feminino-genero"
-                      checked=""
                     />
                     <label
                       className="form-check-label"
@@ -104,7 +103,6 @@ export default function RegisterForm() {
                       type="radio"
                       name="flexRadioDefault"
                       id="outro-genero"
-                      checked=""
                     />
                     <label className="form-check-label" htmlFor="outro-genero">
                       outro

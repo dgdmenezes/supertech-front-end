@@ -49,22 +49,17 @@ export default function ProductShow(props) {
       </div>
 
       <div className="col-4">
-        <h6>
+        <h5>
           {props.product.category} {props.product.brand} {props.product.name}
+        </h5>
+        <h6>
+          <del>De: {props.product.price}</del>
         </h6>
-        <p>De: {props.product.price}</p>
-        <p>
-          {props.product.price}
-          preciso ter um price com desconto ?
-        </p>
-        <p>
-          No cartão: {props.product.price}
-          em até 12x de{" "}
-        </p>
-        <p>
-          No Boleto: {props.product.price}
-          (5% OFF)
-        </p>
+        <br />
+        <h6>Por: {props.product.price}</h6>
+        <br />
+        <br />
+
         <div className="row">
           <div className="d-flex justify-content-around mb-3">
             <div className="d-flex flex-row justify-content-around align-items-center">

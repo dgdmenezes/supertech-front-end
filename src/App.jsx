@@ -13,7 +13,7 @@ import RegisterForm from "./components/pages/RegisterForm";
 import Home from "./components/pages/Home";
 import Err404 from "./components/pages/Err404";
 import AdminRegisterProduct from "./components/pages/AdminRegisterProduct";
-import CardPagination from "./components/molecules/CardPagination";
+import Footer from "./components/organisms/Footer";
 
 // importação de estilo
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -37,7 +37,7 @@ export default function App() {
         <Route path="/register/address" element={<AddressForm />} />
         <Route path="/chart" element={<ChartPage />} />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/test" element={<CardPagination />} />
+        <Route path="/test" element={<Footer />} />
         <Route path="/admin" element={<AdminRegisterProduct />} />
         <Route path="*" element={<Err404 />} />
       </Routes>

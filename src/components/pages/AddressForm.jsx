@@ -1,6 +1,17 @@
 import React from "react";
-
 export default function AddressForm() {
+  const [buscaCep, setBuscaCep] = React.useState("");
+  const [dadosCep, setDadosCep] = React.useState({});
+
+  React.useEffect(() => {
+    fetch(`https://viacep.com.br/ws/${buscaCep}/json/`)
+      .then((res) => res.json())
+      .then((data) => {
+        setDadosCep(data);
+      })
+      .catch((err) => console.log(err));
+  }, [buscaCep, dadosCep]);
+
   return (
     <div className="col-xs-12 col-sm-12  col-md-10 offset-md-1 col-lg-10 offset-lg-1 col-xl-10 offset-xl-1">
       <div className="back-outside shadow col-xl-8 offset-xl-2" role="document">
@@ -35,6 +46,7 @@ export default function AddressForm() {
                     className="form-control rounded-3 mb-3 form-pequeno"
                     id="inputCEP"
                     placeholder="Ex.: 00000-000"
+                    onBlur={(cep) => setBuscaCep(cep.target.value)}
                   />
 
                   <label htmlFor="inputEndereco">
@@ -46,6 +58,7 @@ export default function AddressForm() {
                     id="inputEndereco"
                     autocomplete="street-address"
                     placeholder="Ex.: Rua das flores"
+                    value={dadosCep.logradouro}
                   />
 
                   <label htmlFor="inputNumero">
@@ -80,6 +93,7 @@ export default function AddressForm() {
                     id="inputBairro"
                     autocomplete="address-level3"
                     placeholder="Ex.: Centro"
+                    value={dadosCep.bairro}
                   />
 
                   <label htmlFor="inputCidade">
@@ -91,6 +105,7 @@ export default function AddressForm() {
                     id="inputCidade"
                     autocomplete="address-level2"
                     placeholder="Ex.: São Paulo - SP"
+                    value={dadosCep.localidade}
                   />
 
                   <label htmlFor="inputEstado">
@@ -102,6 +117,7 @@ export default function AddressForm() {
                     id="inputEstado"
                     autocomplete="address-level1"
                     placeholder="Ex.: SP"
+                    value={dadosCep.uf}
                   />
                 </form>
               </fieldset>

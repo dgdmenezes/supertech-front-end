@@ -4,7 +4,7 @@ import NavBarFixedMenu from "../atoms/NavBarFixedMenu";
 
 export default function NavBar() {
   return (
-    <nav className="py-2  border-bottom">
+    <nav className="navBar row">
       <div className="container d-flex justify-content-center ">
         <NavBarFixedMenu />
       </div>

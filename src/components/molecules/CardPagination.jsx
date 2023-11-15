@@ -12,14 +12,19 @@ export default function CardPagination(props) {
   const handleChange = (event, value) => {
     setPage((value - 1) * cardLimitShow);
   };
-
+  console.log(URLcount);
   React.useEffect(() => {
+    console.log(URLcount);
     fetch(URLcount)
       .then((res) => res.json())
       .then((data) => {
-        if (data[0].counter > cardLimitShow)
+        if (data[0] === undefined) {
+          setCount(1);
+        } else if (data[0].counter > cardLimitShow) {
           setCount(parseInt(data[0].counter / cardLimitShow) + 1);
+        }
       });
+
     props.setSkip(page);
     props.setLimit(page + cardLimitShow);
   }, [URLcount, cardLimitShow, page, props.setSkip, props.setLimit]);
