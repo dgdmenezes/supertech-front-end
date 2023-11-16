@@ -7,7 +7,6 @@ import CategoryPage from "./components/pages/CategoryPage";
 import ChartPage from "./components/pages/ChartPage";
 import Checkout from "./components/pages/Checkout";
 import CustomerPage from "./components/pages/CustomerPage";
-import Login from "./components/pages/Login";
 import ProductPage from "./components/pages/ProductPage";
 import RegisterForm from "./components/pages/RegisterForm";
 import Home from "./components/pages/Home";
@@ -29,7 +28,6 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/product/:productId" element={<ProductPage />} />
         <Route path="/category/:categoryName" element={<CategoryPage />} />
         <Route path="/customer" element={<CustomerPage />} />
