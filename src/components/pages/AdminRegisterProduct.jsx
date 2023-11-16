@@ -12,6 +12,8 @@ export default function AdminRegisterProduct() {
   const [image2, setImage2] = React.useState("");
   const [image3, setImage3] = React.useState("");
   const [image4, setImage4] = React.useState("");
+  const [brand, setBrand] = React.useState("");
+  const [model, setModel] = React.useState("");
 
   const fetchOptions = {
     method: "POST",
@@ -25,6 +27,8 @@ export default function AdminRegisterProduct() {
       image2,
       image3,
       image4,
+      brand,
+      model,
     }),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
@@ -44,6 +48,8 @@ export default function AdminRegisterProduct() {
       setImage2("");
       setImage3("");
       setImage4("");
+      setBrand("");
+      setModel("");
     });
   };
 
@@ -78,6 +84,32 @@ export default function AdminRegisterProduct() {
               placeholder="Ex.: Smartphone Samsung Galaxy S21 FE 5G, 128GB, 6GB RAM, Processador Octa Core última geração, Bateria de 4500mAh, Câmera Tripla Traseira de 12MP + 12MP + 8MP, Selfie de 32MP, Tela Infinita de 6.4 120Hz, Dual Chip, Android"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+            />
+            <br />
+
+            <label htmlFor="brand" className="form-label">
+              Marca:
+            </label>
+            <input
+              type="text"
+              className={`${styles.medium} form-control`}
+              id="brand"
+              placeholder="Ex.:  Samsung"
+              value={brand}
+              onChange={(e) => setBrand(e.target.value)}
+            />
+            <br />
+
+            <label htmlFor="model" className="form-label">
+              Modelo:
+            </label>
+            <input
+              type="text"
+              className={`${styles.medium} form-control`}
+              id="model"
+              placeholder="S20"
+              value={model}
+              onChange={(e) => setModel(e.target.value)}
             />
             <br />
 
