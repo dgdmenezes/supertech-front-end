@@ -1,8 +1,46 @@
 import React from "react";
 import DefaultSimple from "../templates/DefaultSimple";
-import { Link } from "react-router-dom";
 
 export default function RegisterForm() {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [name, setName] = React.useState("");
+  const [gender, setGender] = React.useState("");
+  const [birthDate, setBirthDate] = React.useState("");
+  const [cpf, setCpf] = React.useState("");
+  const [phoneNumber, setPhoneNumber] = React.useState("");
+
+  const fetchOptions = {
+    method: "POST",
+    body: JSON.stringify({
+      email,
+      password,
+      name,
+      gender,
+      birthDate,
+      cpf,
+      phoneNumber,
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    fetch("http://localhost:3001/users", fetchOptions)
+      .then((req) => {
+        setEmail("");
+        setPassword("");
+        setName("");
+        setGender("");
+        setBirthDate("");
+        setCpf("");
+        setPhoneNumber("");
+      })
+      .catch((e) => console.log("erro", e));
+  };
+
   return (
     <div>
       <DefaultSimple>
@@ -17,11 +55,11 @@ export default function RegisterForm() {
                 <p className="detalhe px-4">
                   <span className="detalhe-red">*</span>Campos obrigatórios
                 </p>
+                <form onSubmit={handleFormSubmit}>
+                  <div className="form-div shadow rounded-4">
+                    <fieldset>
+                      <legend>Dados da conta</legend>
 
-                <div className="form-div shadow rounded-4">
-                  <fieldset>
-                    <legend>Dados da conta</legend>
-                    <form className="">
                       <label htmlFor="email">
                         <span className="detalhe-red">*</span>email
                       </label>
@@ -29,8 +67,9 @@ export default function RegisterForm() {
                         type="email"
                         className="form-control rounded-3 form-grande mb-3"
                         id="email"
-                        autocomplete="email"
+                        autoComplete="email"
                         placeholder="Ex.: email@mail.com"
+                        onChange={(e) => setEmail(e.target.value)}
                       />
 
                       <label htmlFor="inputPassword">
@@ -40,125 +79,135 @@ export default function RegisterForm() {
                         type="password"
                         className="form-control rounded-3 form-grande mb-4"
                         id="inputPassword"
-                        autocomplete="new-password"
+                        autoComplete="new-password"
                         placeholder="Digite sua senha"
                       />
                       <input
                         type="password"
                         className="form-control rounded-3 form-grande mb-4"
                         id="input-sec-password"
-                        autocomplete="new-password"
+                        autoComplete="new-password"
                         placeholder="Digite novamente sua senha"
+                        onChange={(e) => setPassword(e.target.value)}
                       />
-                    </form>
-                  </fieldset>
-                </div>
+                    </fieldset>
+                  </div>
 
-                <div className="form-div shadow rounded-4">
-                  <fieldset>
-                    <legend>Dados Pessoais</legend>
+                  <div className="form-div shadow rounded-4">
+                    <fieldset>
+                      <legend>Dados Pessoais</legend>
 
-                    <div className="mb-3">
-                      <label htmlFor="inputNome">
-                        <span className="detalhe-red">*</span>nome completo
+                      <div className="mb-3">
+                        <label htmlFor="inputNome">
+                          <span className="detalhe-red">*</span>nome completo
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control rounded-3 form-grande"
+                          id="inputNome"
+                          autoComplete="name"
+                          placeholder="Ex.: joao da silva"
+                          onChange={(e) => setName(e.target.value)}
+                        />
+                      </div>
+
+                      <p className="mb-2">
+                        <span className="detalhe-red">*</span>gênero
+                      </p>
+
+                      <div className="flex-row d-flex flex-xs-wrap">
+                        <div className="form-check">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            name="flexRadioDefault"
+                            id="masculino-genero"
+                            value="male"
+                            onClick={(e) => setGender(e.target.value)}
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor="masculino-genero"
+                          >
+                            masculino
+                          </label>
+                        </div>
+                        <div className="form-check px-5">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            name="flexRadioDefault"
+                            id="feminino-genero"
+                            value="female"
+                            onClick={(e) => setGender(e.target.value)}
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor="feminino-genero"
+                          >
+                            feminino
+                          </label>
+                        </div>
+                        <div className="form-check mb-3">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            name="flexRadioDefault"
+                            id="outro-genero"
+                            value="other"
+                            onClick={(e) => setGender(e.target.value)}
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor="outro-genero"
+                          >
+                            outro
+                          </label>
+                        </div>
+                      </div>
+
+                      <label htmlFor="iputNascimento">
+                        <span className="detalhe-red">*</span>Data de Nascimento
                       </label>
                       <input
-                        type="text"
-                        className="form-control rounded-3 form-grande"
-                        id="inputNome"
-                        autocomplete="name"
-                        placeholder="Ex.: joao da silva"
+                        type="date"
+                        className="form-control rounded-3 mb-3 form-medio"
+                        id="iputNascimento"
+                        autoComplete="bday"
+                        placeholder="Ex.: DD/MM/AAAA"
+                        onChange={(e) => setBirthDate(e.target.value)}
                       />
-                    </div>
 
-                    <p className="mb-2">
-                      <span className="detalhe-red">*</span>gênero
-                    </p>
+                      <label htmlFor="inputCPF">
+                        <span className="detalhe-red">*</span>CPF
+                      </label>
+                      <input
+                        type="number"
+                        maxLength="14"
+                        className="form-control rounded-3 mb-3 form-medio"
+                        id="inputCPF"
+                        placeholder="Ex.:Digite o CPF"
+                        onChange={(e) => setCpf(e.target.value)}
+                      />
 
-                    <div className="flex-row d-flex flex-xs-wrap">
-                      <div className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="flexRadioDefault"
-                          id="masculino-genero"
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor="masculino-genero"
-                        >
-                          masculino
-                        </label>
-                      </div>
-                      <div className="form-check px-5">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="flexRadioDefault"
-                          id="feminino-genero"
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor="feminino-genero"
-                        >
-                          feminino
-                        </label>
-                      </div>
-                      <div className="form-check mb-3">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="flexRadioDefault"
-                          id="outro-genero"
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor="outro-genero"
-                        >
-                          outro
-                        </label>
-                      </div>
-                    </div>
+                      <label htmlFor="inputTelefone">
+                        <span className="detalhe-red">*</span>Telefone
+                      </label>
+                      <input
+                        type="tel"
+                        className="form-control rounded-3 mb-5 form-medio"
+                        id="inputTelefone"
+                        autoComplete="tel"
+                        placeholder="Ex.: ddd 99999-9999"
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                      />
+                    </fieldset>
+                  </div>
 
-                    <label htmlFor="iputNascimento">
-                      <span className="detalhe-red">*</span>Data de Nascimento
-                    </label>
-                    <input
-                      type="date"
-                      className="form-control rounded-3 mb-3 form-medio"
-                      id="iputNascimento"
-                      autocomplete="bday"
-                      placeholder="Ex.: DD/MM/AAAA"
-                    />
-
-                    <label htmlFor="inputCPF">
-                      <span className="detalhe-red">*</span>CPF
-                    </label>
-                    <input
-                      type="number"
-                      maxlength="14"
-                      className="form-control rounded-3 mb-3 form-medio"
-                      id="inputCPF"
-                      placeholder="Ex.:Digite o CPF"
-                    />
-
-                    <label htmlFor="inputTelefone">
-                      <span className="detalhe-red">*</span>Telefone
-                    </label>
-                    <input
-                      type="tel"
-                      className="form-control rounded-3 mb-5 form-medio"
-                      id="inputTelefone"
-                      autocomplete="tel"
-                      placeholder="Ex.: ddd 99999-9999"
-                    />
-                  </fieldset>
-                </div>
-                <div className="d-flex justify-content-center">
-                  <Link className="btn btn-primary mb-3" to="/register/address">
-                    Salvar
-                  </Link>
-                </div>
+                  <div className="d-flex justify-content-center">
+                    <button className="btn btn-primary mb-3">Salvar</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>

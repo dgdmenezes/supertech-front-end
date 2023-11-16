@@ -13,7 +13,7 @@ export default function AdminRegisterProduct() {
   const [image3, setImage3] = React.useState("");
   const [image4, setImage4] = React.useState("");
 
-  const CORS = {
+  const fetchOptions = {
     method: "POST",
     body: JSON.stringify({
       name,
@@ -34,7 +34,7 @@ export default function AdminRegisterProduct() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     console.log("submit");
-    fetch("http://localhost:3001/products/create", CORS).then(() => {
+    fetch("http://localhost:3001/products/create", fetchOptions).then(() => {
       setName("");
       setDescription("");
       setPrice("");
@@ -55,7 +55,7 @@ export default function AdminRegisterProduct() {
           <div className={styles.borderFieldSet}>
             <br />
 
-            <label for="name" className="form-label">
+            <label htmlFor="name" className="form-label">
               Nome:
             </label>
             <input
@@ -68,7 +68,7 @@ export default function AdminRegisterProduct() {
             />
             <br />
 
-            <label for="description" className="form-label">
+            <label htmlFor="description" className="form-label">
               Descrição:
             </label>
             <input
@@ -81,7 +81,7 @@ export default function AdminRegisterProduct() {
             />
             <br />
 
-            <label for="price" className="form-label">
+            <label htmlFor="price" className="form-label">
               Preço:
             </label>
             <input
@@ -94,7 +94,7 @@ export default function AdminRegisterProduct() {
             />
             <br />
 
-            <label for="category" className="form-label">
+            <label htmlFor="category" className="form-label">
               Categoria:
             </label>
             <input
@@ -107,7 +107,7 @@ export default function AdminRegisterProduct() {
             />
             <br />
 
-            <label for="stock" className="form-label">
+            <label htmlFor="stock" className="form-label">
               Estoque:
             </label>
             <input
@@ -127,7 +127,7 @@ export default function AdminRegisterProduct() {
             <legend>Imagem</legend>
 
             <br />
-            <label for="imageMain" className="form-label">
+            <label htmlFor="imageMain" className="form-label">
               Imagem Principal - <span> obrigatório</span>
             </label>
             <input
@@ -141,7 +141,7 @@ export default function AdminRegisterProduct() {
             <br />
             <br />
 
-            <label for="image2" className="form-label">
+            <label htmlFor="image2" className="form-label">
               Segunda Imagem
             </label>
             <input
@@ -155,7 +155,7 @@ export default function AdminRegisterProduct() {
             <br />
             <br />
 
-            <label for="image3" className="form-label py-2">
+            <label htmlFor="image3" className="form-label py-2">
               Terceira Imagem
             </label>
             <input
@@ -169,7 +169,7 @@ export default function AdminRegisterProduct() {
             <br />
             <br />
 
-            <label for="image4" className="form-label">
+            <label htmlFor="image4" className="form-label">
               Quarta imagem
             </label>
             <input
@@ -192,7 +192,7 @@ export default function AdminRegisterProduct() {
 
           <div className={styles.borderFieldSet}>
             <legend>Especificações</legend>
-            <label for="brand" className="form-label">
+            <label htmlFor="brand" className="form-label">
               Marca
             </label>
             <input
@@ -203,7 +203,7 @@ export default function AdminRegisterProduct() {
             />
             <br />
 
-            <label for="model" className="form-label">
+            <label htmlFor="model" className="form-label">
               Modelo
             </label>
             <input
@@ -213,7 +213,7 @@ export default function AdminRegisterProduct() {
               placeholder="Ex.: Galaxy S20"
             />
             <br />
-            <label for="processador" className="form-label">
+            <label htmlFor="processador" className="form-label">
               processador
             </label>
             <input
@@ -223,7 +223,7 @@ export default function AdminRegisterProduct() {
               placeholder="Ex.: Exynos 1100"
             />
             <br />
-            <label for="memoriaRAM" className="form-label">
+            <label htmlFor="memoriaRAM" className="form-label">
               Memória Ram
             </label>
             <input
@@ -233,7 +233,7 @@ export default function AdminRegisterProduct() {
               placeholder="Ex.: 16GB de Ram"
             />
             <br />
-            <label for="armazenamento" className="form-label">
+            <label htmlFor="armazenamento" className="form-label">
               Armazenamento
             </label>
             <input
@@ -243,7 +243,7 @@ export default function AdminRegisterProduct() {
               placeholder="Ex.: 128GB"
             />
             <br />
-            <label for="sistemaOperacional" className="form-label">
+            <label htmlFor="sistemaOperacional" className="form-label">
               Sistema Operacional
             </label>
             <input
@@ -253,7 +253,7 @@ export default function AdminRegisterProduct() {
               placeholder="ex.: Android"
             />
             <br />
-            <label for="tamanhoTela" className="form-label">
+            <label htmlFor="tamanhoTela" className="form-label">
               Tamanho da Tela
             </label>
             <input
@@ -263,7 +263,7 @@ export default function AdminRegisterProduct() {
               placeholder="ex.: 8 polegadas"
             />
             <br />
-            <label for="resolucaoTela" className="form-label">
+            <label htmlFor="resolucaoTela" className="form-label">
               Resolução Da Tela
             </label>
             <input
@@ -273,7 +273,7 @@ export default function AdminRegisterProduct() {
               placeholder="ex.:  QuadHD"
             />
             <br />
-            <label for="genero" className="form-label">
+            <label htmlFor="genero" className="form-label">
               Resolouçãao Da Tela
             </label>
             <input
@@ -283,7 +283,7 @@ export default function AdminRegisterProduct() {
               placeholder="ex.: Aventura"
             />
             <br />
-            <label for="classificacao" className="form-label">
+            <label htmlFor="classificacao" className="form-label">
               Classificação
             </label>
             <input
@@ -293,7 +293,7 @@ export default function AdminRegisterProduct() {
               placeholder="ex.: 12 anos"
             />
             <br />
-            <label for="idioma" className="form-label">
+            <label htmlFor="idioma" className="form-label">
               Idioma
             </label>
             <input
@@ -303,7 +303,7 @@ export default function AdminRegisterProduct() {
               placeholder="ex.: Inglês, Francês, Português do Brasil"
             />
             <br />
-            <label for="itensInclusos" className="form-label">
+            <label htmlFor="itensInclusos" className="form-label">
               Itens Inclusos
             </label>
             <input

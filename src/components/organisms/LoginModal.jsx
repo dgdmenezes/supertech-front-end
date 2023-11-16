@@ -16,9 +16,7 @@ export default function LoginModal(props) {
         aria-labelledby="contained-modal-title-vcenter"
         className="modal-lg"
       >
-        <Modal.Header closeButton>
-          <Modal.Title>Meu Carrinho</Modal.Title>
-        </Modal.Header>
+        <Modal.Header closeButton></Modal.Header>
         <Modal.Body className="grid-example">
           <Container>
             <div className="row login-div">

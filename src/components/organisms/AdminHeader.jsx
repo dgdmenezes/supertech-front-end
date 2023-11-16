@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 export default function AdminHeader() {
   return (
     <div>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
+      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <div className="container-fluid">
           <h5>Página do Administrador</h5>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -16,28 +16,32 @@ export default function AdminHeader() {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <Link class="nav-link active" aria-current="page" to="/admin">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/admin"
+                >
                   Home
                 </Link>
               </li>
-              <li class="nav-item dropdown">
+              <li className="nav-item dropdown">
                 <Link
-                  class="nav-link dropdown-toggle"
+                  className="nav-link dropdown-toggle"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
                   Gestão de Produtos
                 </Link>
-                <ul class="dropdown-menu">
+                <ul className="dropdown-menu">
                   <li>
                     <Link
-                      class="dropdown-item"
+                      className="dropdown-item"
                       to="/admin/products/manualregistration"
                     >
                       Cadastro Manual de Produto
@@ -45,27 +49,27 @@ export default function AdminHeader() {
                   </li>
                   <li>
                     <Link
-                      class="dropdown-item nav-link disabled"
+                      className="dropdown-item nav-link disabled"
                       to="/admin/products/batchregistration"
                     >
                       Cadastro de Produto em Lote
                     </Link>
                   </li>
                   <li>
-                    <hr class="dropdown-divider" />
+                    <hr className="dropdown-divider" />
                   </li>
                   <li>
                     <Link
-                      class="dropdown-item nav-link disabled"
+                      className="dropdown-item nav-link disabled"
                       to="/admin/products/update"
                     >
                       Atualizar Produto
                     </Link>
                   </li>
                   <li>
-                    <hr class="dropdown-divider" />
+                    <hr className="dropdown-divider" />
                     <Link
-                      class="dropdown-item nav-link disabled"
+                      className="dropdown-item nav-link disabled"
                       to="/admin/products/delete"
                     >
                       Deletar Produto
@@ -73,24 +77,24 @@ export default function AdminHeader() {
                   </li>
                 </ul>
               </li>
-              <li class="nav-item dropdown">
+              <li className="nav-item dropdown">
                 <Link
-                  class="nav-link dropdown-toggle nav-link disabled"
+                  className="nav-link dropdown-toggle nav-link disabled"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
                   Gestão de Usuários
                 </Link>
-                <ul class="dropdown-menu">
+                <ul className="dropdown-menu">
                   <li>
-                    <Link class="dropdown-item" to="/admin/users/update">
+                    <Link className="dropdown-item" to="/admin/users/update">
                       Atualizar Usuário
                     </Link>
                   </li>
                   <li>
-                    <hr class="dropdown-divider" />
-                    <Link class="dropdown-item" to="/admin/users/delete">
+                    <hr className="dropdown-divider" />
+                    <Link className="dropdown-item" to="/admin/users/delete">
                       Deletar Usuário
                     </Link>
                   </li>

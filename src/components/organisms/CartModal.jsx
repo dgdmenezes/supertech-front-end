@@ -25,6 +25,7 @@ export default function CartModal(props) {
             <ModalItem />
           </Container>
         </Modal.Body>
+
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Fechar
