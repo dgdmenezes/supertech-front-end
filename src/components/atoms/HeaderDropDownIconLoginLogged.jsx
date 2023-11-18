@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import boxLineWhite from "../../images/login-box-line-white.svg";
 
-export default function HeaderDropDownIconLogin() {
+export default function HeaderDropDownIconLoginLogged() {
   return (
     <div>
       <Link
@@ -27,14 +27,30 @@ export default function HeaderDropDownIconLogin() {
       </Link>
       <ul className="dropdown-menu text-small shadow">
         <li>
-          <Link className="dropdown-item" to="/login">
-            Fazer Login
+          <p className="dropdown-item" to="/login">
+            Olá, user!
+          </p>
+        </li>
+
+        <li>
+          <hr className="dropdown-divider" />
+        </li>
+        <li>
+          <Link className="dropdown-item" to="#">
+            Últimos pedidos
           </Link>
         </li>
-        <hr />
         <li>
-          <Link className="dropdown-item" to="/register">
-            Cadastre-se!
+          <Link className="dropdown-item" to="#">
+            Alterar Cadastro
+          </Link>
+        </li>
+        <li>
+          <hr className="dropdown-divider" />
+        </li>
+        <li>
+          <Link className="dropdown-item" to="/logout">
+            Fazer Logoff
           </Link>
         </li>
       </ul>
@@ -42,7 +58,7 @@ export default function HeaderDropDownIconLogin() {
   );
 }
 /*<li>
-          <hr className="dropdown-divider" />
+        <hr className="dropdown-divider" />
         </li>
         <li>
           <Link className="dropdown-item" to="#">

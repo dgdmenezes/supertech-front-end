@@ -1,7 +1,10 @@
 import React from "react";
 import DefaultSimple from "../templates/DefaultSimple";
+import { useNavigate } from "react-router-dom";
 
 export default function RegisterForm() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [name, setName] = React.useState("");
@@ -29,7 +32,7 @@ export default function RegisterForm() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     fetch("http://localhost:3001/users", fetchOptions)
-      .then((req) => {
+      .then(() => {
         setEmail("");
         setPassword("");
         setName("");
@@ -37,6 +40,7 @@ export default function RegisterForm() {
         setBirthDate("");
         setCpf("");
         setPhoneNumber("");
+        navigate("/login");
       })
       .catch((e) => console.log("erro", e));
   };

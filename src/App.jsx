@@ -1,5 +1,11 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
 
 //importação de páginas
 import AddressForm from "./components/pages/AddressForm";
@@ -13,6 +19,8 @@ import Home from "./components/pages/Home";
 import Err404 from "./components/pages/Err404";
 import AdminRegisterProduct from "./components/pages/AdminRegisterProduct";
 import Footer from "./components/organisms/Footer";
+import LoginForm from "./components/pages/LoginForm";
+import HomeLogged from "./components/pages/HomeLogged";
 
 // importação de estilo
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -22,6 +30,14 @@ import "./styles/cadastro.css";
 import "./styles/login.css";
 import "./styles/pagina_produto.css";
 import "./styles/style.css";
+import { isLogged } from "./helpers/Auth";
+
+const ProtectedRoute = () => {
+  if (!isLogged()) {
+    return <Navigate to="/" replace />;
+  }
+  return <Outlet />;
+};
 
 export default function App() {
   return (
@@ -37,6 +53,10 @@ export default function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/test" element={<Footer />} />
         <Route path="/admin" element={<AdminRegisterProduct />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/logged" element={<HomeLogged />} />
+        </Route>
         <Route path="*" element={<Err404 />} />
       </Routes>
     </BrowserRouter>
