@@ -11,7 +11,8 @@ export default function LoginForm() {
 
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [showError, setShowError] = React.useState("");
+  const [showError, setShowError] = React.useState(false);
+  const [showSuccess, setShowSuccess] = React.useState(false);
 
   const fetchOptions = {
     method: "POST",
@@ -38,8 +39,11 @@ export default function LoginForm() {
       })
       .then(({ token }) => {
         console.log(token);
-        saveToken(token);
-        navigate("/logged");
+        setShowSuccess(true);
+        setTimeout(() => {
+          saveToken(token);
+          navigate("/customer");
+        }, 1500);
       })
       .catch(() => {
         console.log("Deu erro");
@@ -103,6 +107,11 @@ export default function LoginForm() {
                     {showError && (
                       <Alert severity="error">
                         E-mail e/ou senha inválido(s)
+                      </Alert>
+                    )}
+                    {showSuccess && (
+                      <Alert severity="success">
+                        Login efetuado com sucesso!
                       </Alert>
                     )}
                   </form>

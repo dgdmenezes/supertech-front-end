@@ -22,6 +22,8 @@ import Footer from "./components/organisms/Footer";
 import LoginForm from "./components/pages/LoginForm";
 import HomeLogged from "./components/pages/HomeLogged";
 
+import { GlobalContex } from "./contexts/GlobalContext";
+
 // importação de estilo
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle";
@@ -40,25 +42,47 @@ const ProtectedRoute = () => {
 };
 
 export default function App() {
+  const [currentUser, setCurrentUser] = React.useState("");
+  console.log(!!currentUser);
+  const contextValues = { currentUser, setCurrentUser };
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/product/:productId" element={<ProductPage />} />
-        <Route path="/category/:categoryName" element={<CategoryPage />} />
-        <Route path="/customer" element={<CustomerPage />} />
-        <Route path="/register" element={<RegisterForm />} />
-        <Route path="/register/address" element={<AddressForm />} />
-        <Route path="/chart" element={<ChartPage />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/test" element={<Footer />} />
-        <Route path="/admin" element={<AdminRegisterProduct />} />
-        <Route path="/login" element={<LoginForm />} />
-        <Route element={<ProtectedRoute />}>
-          <Route path="/logged" element={<HomeLogged />} />
-        </Route>
-        <Route path="*" element={<Err404 />} />
-      </Routes>
-    </BrowserRouter>
+    <GlobalContex.Provider value={contextValues}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/product/:productId" element={<ProductPage />} />
+          <Route path="/category/:categoryName" element={<CategoryPage />} />
+          <Route path="/register" element={<RegisterForm />} />
+          <Route path="/register/address" element={<AddressForm />} />
+          <Route path="/chart" element={<ChartPage />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/test" element={<Footer />} />
+          <Route path="/admin" element={<AdminRegisterProduct />} />
+          <Route
+            path="/login"
+            element={
+              <LoginForm
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+            }
+          />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/logged" element={<HomeLogged />} />
+            <Route
+              path="/customer"
+              element={
+                <CustomerPage
+                  currentUser={currentUser}
+                  setCurrentUser={setCurrentUser}
+                />
+              }
+            />
+          </Route>
+          <Route path="*" element={<Err404 />} />
+        </Routes>
+      </BrowserRouter>
+    </GlobalContex.Provider>
   );
 }

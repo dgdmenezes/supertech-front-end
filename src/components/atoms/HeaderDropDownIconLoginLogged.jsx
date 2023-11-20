@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { GlobalContex } from "../../contexts/GlobalContext";
 import boxLineWhite from "../../images/login-box-line-white.svg";
 
 export default function HeaderDropDownIconLoginLogged() {
+  const { currentUser } = React.useContext(GlobalContex);
   return (
     <div>
       <Link
@@ -28,7 +30,7 @@ export default function HeaderDropDownIconLoginLogged() {
       <ul className="dropdown-menu text-small shadow">
         <li>
           <p className="dropdown-item" to="/login">
-            Olá, user!
+            Olá, {currentUser.name}!
           </p>
         </li>
 

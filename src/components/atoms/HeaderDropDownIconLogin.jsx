@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import boxLineWhite from "../../images/login-box-line-white.svg";
+import HeaderDropDownIconLoginLogged from "./HeaderDropDownIconLoginLogged";
 
 export default function HeaderDropDownIconLogin() {
-  return (
+  return !!localStorage.getItem("token") ? (
+    <HeaderDropDownIconLoginLogged />
+  ) : (
     <div>
       <Link
         to="#"
