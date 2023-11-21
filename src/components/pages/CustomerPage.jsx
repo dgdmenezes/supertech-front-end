@@ -27,7 +27,12 @@ export default function CustomerPage() {
     };
 
     fetch("http://localhost:3001/users/token", fetchOptions)
-      .then((res) => res.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => {
         setCurrentUser(data);
         setShowAddress(true);

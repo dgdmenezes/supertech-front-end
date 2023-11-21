@@ -29,9 +29,6 @@ export default function LoginForm() {
     e.preventDefault();
     fetch("http://localhost:3001/users/login", fetchOptions)
       .then((response) => {
-        if (response.status === 403) {
-          throw new Error("Unauthorized");
-        }
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
