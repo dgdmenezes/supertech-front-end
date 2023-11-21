@@ -38,6 +38,11 @@ export default function HeaderDropDownIconLoginLogged() {
           <hr className="dropdown-divider" />
         </li>
         <li>
+          <Link className="dropdown-item" to="/customer">
+            Minha página
+          </Link>
+        </li>
+        <li>
           <Link className="dropdown-item" to="#">
             Últimos pedidos
           </Link>

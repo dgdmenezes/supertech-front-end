@@ -18,9 +18,9 @@ import RegisterForm from "./components/pages/RegisterForm";
 import Home from "./components/pages/Home";
 import Err404 from "./components/pages/Err404";
 import AdminRegisterProduct from "./components/pages/AdminRegisterProduct";
-import Footer from "./components/organisms/Footer";
+
 import LoginForm from "./components/pages/LoginForm";
-import HomeLogged from "./components/pages/HomeLogged";
+import AddressCustumerPageItem from "./components/molecules/AddressCustumerPageItem";
 
 import { GlobalContex } from "./contexts/GlobalContext";
 
@@ -57,8 +57,9 @@ export default function App() {
           <Route path="/register/address" element={<AddressForm />} />
           <Route path="/chart" element={<ChartPage />} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="/test" element={<Footer />} />
           <Route path="/admin" element={<AdminRegisterProduct />} />
+          <Route path="/test" element={<AddressCustumerPageItem />} />
+
           <Route
             path="/login"
             element={
@@ -69,7 +70,6 @@ export default function App() {
             }
           />
           <Route element={<ProtectedRoute />}>
-            <Route path="/logged" element={<HomeLogged />} />
             <Route
               path="/customer"
               element={
