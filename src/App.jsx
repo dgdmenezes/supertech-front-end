@@ -18,9 +18,10 @@ import RegisterForm from "./components/pages/RegisterForm";
 import Home from "./components/pages/Home";
 import Err404 from "./components/pages/Err404";
 import AdminRegisterProduct from "./components/pages/AdminRegisterProduct";
-
+import Logout from "./components/pages/Logout";
 import LoginForm from "./components/pages/LoginForm";
 import AddressCustumerPageItem from "./components/molecules/AddressCustumerPageItem";
+import Logged from "./components/pages/Logged";
 
 import { GlobalContex } from "./contexts/GlobalContext";
 
@@ -78,6 +79,16 @@ export default function App() {
                   setCurrentUser={setCurrentUser}
                 />
               }
+            />
+            <Route element={<Logout />} path="/logout" />
+            <Route
+              element={
+                <Logged
+                  currentUser={currentUser}
+                  setCurrentUser={setCurrentUser}
+                />
+              }
+              path="/logged"
             />
           </Route>
           <Route path="*" element={<Err404 />} />

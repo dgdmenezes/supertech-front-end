@@ -1,5 +1,5 @@
 import React from "react";
-import VerifyValidToken from "../atoms/verifyValidToken";
+import VerifyValidToken from "../atoms/VerifyValidToken";
 
 export default function Checkout() {
   return (

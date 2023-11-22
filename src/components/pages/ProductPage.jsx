@@ -8,7 +8,7 @@ import ProductReview from "../organisms/ProductReview";
 import ProductShow from "../organisms/ProductShow";
 import { useParams } from "react-router-dom";
 
-import VerifyValidToken from "../atoms/verifyValidToken";
+import VerifyValidToken from "../atoms/VerifyValidToken";
 
 export default function ProductPage() {
   const URL = "http://localhost:3001/products/index/index?skip=0&limit=4";

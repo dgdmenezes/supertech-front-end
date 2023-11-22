@@ -1,7 +1,7 @@
 import React from "react";
 import DefaultSimple from "../templates/DefaultSimple";
 import { useNavigate } from "react-router-dom";
-import VerifyValidToken from "../atoms/verifyValidToken";
+import VerifyValidToken from "../atoms/VerifyValidToken";
 
 export default function RegisterForm() {
   const navigate = useNavigate();

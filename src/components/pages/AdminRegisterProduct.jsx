@@ -1,7 +1,7 @@
 import React from "react";
 import AdminTemplate from "../templates/AdminTemplate";
 import styles from "./AdminRegisterProduct.module.css";
-import VerifyValidToken from "../atoms/verifyValidToken";
+import VerifyValidToken from "../atoms/VerifyValidToken";
 export default function AdminRegisterProduct() {
   const [name, setName] = React.useState("");
   const [description, setDescription] = React.useState("");

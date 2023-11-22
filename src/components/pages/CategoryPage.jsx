@@ -3,6 +3,7 @@ import Default from "../templates/Default";
 import CardGroup from "../organisms/CardGroup";
 import { useParams } from "react-router-dom";
 import CardPagination from "../molecules/CardPagination";
+import VerifyValidToken from "../atoms/VerifyValidToken";
 
 export default function CategoryPage() {
   const cardLimitShow = 12;
@@ -16,6 +17,7 @@ export default function CategoryPage() {
 
   return (
     <Default>
+      <VerifyValidToken />
       <CardGroup URL={URL} />
       <CardPagination
         URLCount={URLCount}

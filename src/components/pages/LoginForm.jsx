@@ -5,7 +5,7 @@ import { Alert } from "@mui/material";
 import { Link } from "react-router-dom";
 import { saveToken } from "../../helpers/Auth";
 import { useNavigate } from "react-router-dom";
-import VerifyValidToken from "../atoms/verifyValidToken";
+import VerifyValidToken from "../atoms/VerifyValidToken";
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ export default function LoginForm() {
         setShowSuccess(true);
         setTimeout(() => {
           saveToken(token);
-          navigate("/customer");
+          navigate("/logged");
         }, 1500);
       })
       .catch(() => {
