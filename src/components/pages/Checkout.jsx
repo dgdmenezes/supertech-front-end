@@ -1,5 +1,11 @@
 import React from "react";
+import VerifyValidToken from "../atoms/verifyValidToken";
 
 export default function Checkout() {
-  return <div>Checkout</div>;
+  return (
+    <div>
+      <VerifyValidToken />
+      Checkout
+    </div>
+  );
 }

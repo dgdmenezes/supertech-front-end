@@ -1,7 +1,7 @@
 import React from "react";
 import AdminTemplate from "../templates/AdminTemplate";
 import styles from "./AdminRegisterProduct.module.css";
-
+import VerifyValidToken from "../atoms/verifyValidToken";
 export default function AdminRegisterProduct() {
   const [name, setName] = React.useState("");
   const [description, setDescription] = React.useState("");
@@ -55,6 +55,7 @@ export default function AdminRegisterProduct() {
 
   return (
     <AdminTemplate>
+      <VerifyValidToken />
       <div className={styles.bodyAdmin}>
         <h1>Cadastro Manual de Produto</h1>
         <form onSubmit={handleFormSubmit}>

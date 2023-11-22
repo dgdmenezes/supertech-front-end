@@ -1,6 +1,7 @@
 import React from "react";
 import DefaultSimple from "../templates/DefaultSimple";
 import { useNavigate } from "react-router-dom";
+import VerifyValidToken from "../atoms/verifyValidToken";
 
 export default function RegisterForm() {
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ export default function RegisterForm() {
   return (
     <div>
       <DefaultSimple>
+        <VerifyValidToken />
         <div className="col-xs-12 col-sm-12  col-md-10 offset-md-1 col-lg-10 offset-lg-1 col-xl-10 offset-xl-1">
           <div
             className="back-outside shadow col-xl-8 offset-xl-2"
