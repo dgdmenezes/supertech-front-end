@@ -44,7 +44,7 @@ const ProtectedRoute = () => {
 
 export default function App() {
   const [currentUser, setCurrentUser] = React.useState("");
-  console.log(!!currentUser);
+
   const contextValues = { currentUser, setCurrentUser };
 
   return (
@@ -55,7 +55,7 @@ export default function App() {
           <Route path="/product/:productId" element={<ProductPage />} />
           <Route path="/category/:categoryName" element={<CategoryPage />} />
           <Route path="/register" element={<RegisterForm />} />
-          <Route path="/register/address" element={<AddressForm />} />
+
           <Route path="/chart" element={<ChartPage />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/admin" element={<AdminRegisterProduct />} />
@@ -71,6 +71,15 @@ export default function App() {
             }
           />
           <Route element={<ProtectedRoute />}>
+            <Route
+              path="/register/address"
+              element={
+                <AddressForm
+                  currentUser={currentUser}
+                  setCurrentUser={setCurrentUser}
+                />
+              }
+            />
             <Route
               path="/customer"
               element={

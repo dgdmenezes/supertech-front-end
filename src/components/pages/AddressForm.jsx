@@ -1,18 +1,100 @@
 import React from "react";
 import DefaultSimple from "../templates/DefaultSimple";
+import { useNavigate } from "react-router-dom";
+import { GlobalContex } from "../../contexts/GlobalContext";
+import { getToken, removeToken } from "../../helpers/Auth";
+import { Alert } from "@mui/material";
 
 export default function AddressForm() {
-  const [buscaCep, setBuscaCep] = React.useState("");
-  const [dadosCep, setDadosCep] = React.useState({});
+  const { currentUser, setCurrentUser } = React.useContext(GlobalContex);
+
+  /*const [buscaCep, setBuscaCep] = React.useState("");
+  const [dadosCep, setDadosCep] = React.useState({});*/
+
+  const [nameAddress, setNameAddress] = React.useState("");
+  const [cep, setCep] = React.useState("");
+  const [address, setAddress] = React.useState("");
+  const [number, setNumber] = React.useState("");
+  const [complement, setComplement] = React.useState("");
+  const [referencePoint, setReferencePoint] = React.useState("");
+  const [neighborhood, setNeighborhood] = React.useState("");
+  const [city, setCity] = React.useState("");
+  const [state, setState] = React.useState("AC");
+  const [userId, setUserId] = React.useState("");
+
+  const [showSuccess, setShowSuccess] = React.useState(false);
+  const [showError, setShowError] = React.useState(false);
+
+  const navigate = useNavigate();
+  const token = getToken();
 
   React.useEffect(() => {
+    const fetchOptions = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    fetch("http://localhost:3001/users/token", fetchOptions)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setCurrentUser(data);
+        setUserId(data._id);
+      })
+      .catch(() => {
+        removeToken();
+        navigate("/");
+      });
+  }, [navigate, setCurrentUser, token]);
+
+  /* React.useEffect(() => {
     fetch(`https://viacep.com.br/ws/${buscaCep}/json/`)
       .then((res) => res.json())
       .then((data) => {
         setDadosCep(data);
       })
       .catch((err) => console.log(err));
-  }, [buscaCep, dadosCep]);
+  }, [buscaCep, dadosCep]);*/
+
+  const fetchOptions = {
+    method: "POST",
+    body: JSON.stringify({
+      nameAddress,
+      cep,
+      address,
+      number,
+      complement,
+      referencePoint,
+      neighborhood,
+      city,
+      state,
+      userId,
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    fetch("http://localhost:3001/address/create", fetchOptions)
+      .then(() => {
+        /*setTimeout(() => {
+          navigate("/logged");
+        }, 1000);*/
+        setShowSuccess(true);
+      })
+      .catch((e) => console.log("erro", e));
+    /*setTimeout(() => {
+      navigate("/logged");
+      }, 1000);*/
+    setShowError(true);
+  };
 
   return (
     <div>
@@ -29,11 +111,11 @@ export default function AddressForm() {
                   <span className="detalhe-red">*</span>Campos obrigatórios
                 </p>
 
-                <h6 className="mb-0 px-4">Olá Usuário(a)</h6>
+                <h6 className="mb-0 px-4">Olá, {currentUser.name}</h6>
 
                 <div className="form-div form-div form-div shadow rounded-4">
                   <fieldset>
-                    <form>
+                    <form onSubmit={handleFormSubmit}>
                       <legend>Endereço</legend>
 
                       <label htmlFor="inputApelido">
@@ -45,6 +127,7 @@ export default function AddressForm() {
                         className="form-control rounded-3 mb-3 form-grande"
                         id="inputApelido"
                         placeholder="Ex.: Casa, trabalho etc..."
+                        onChange={(e) => setNameAddress(e.target.value)}
                       />
 
                       <label htmlFor="inputCEP">
@@ -56,7 +139,7 @@ export default function AddressForm() {
                         className="form-control rounded-3 mb-3 form-pequeno"
                         id="inputCEP"
                         placeholder="Ex.: 00000-000"
-                        onBlur={(cep) => setBuscaCep(cep.target.value)}
+                        onChange={(e) => setCep(e.target.value)}
                       />
 
                       <label htmlFor="inputEndereco">
@@ -68,7 +151,7 @@ export default function AddressForm() {
                         id="inputEndereco"
                         autocomplete="street-address"
                         placeholder="Ex.: Rua das flores"
-                        value={dadosCep.logradouro}
+                        onChange={(e) => setAddress(e.target.value)}
                       />
 
                       <label htmlFor="inputNumero">
@@ -81,6 +164,20 @@ export default function AddressForm() {
                         id="inputNumero"
                         autocomplete=""
                         placeholder="Ex.: 99"
+                        onChange={(e) => setNumber(e.target.value)}
+                      />
+
+                      <label htmlFor="inputComplemento">
+                        <span className="detalhe-red"></span>Complemento
+                      </label>
+                      <input
+                        type="text"
+                        maxlength="6"
+                        className="form-control rounded-3 mb-3 form-pequeno"
+                        id="inputComplemento"
+                        autocomplete=""
+                        placeholder="Ex.: apto 202"
+                        onChange={(e) => setComplement(e.target.value)}
                       />
 
                       <label htmlFor="inputReferencia">
@@ -92,6 +189,7 @@ export default function AddressForm() {
                         id="inputReferencia"
                         autocomplete=""
                         placeholder="Ex.: próximo à padaria"
+                        onChange={(e) => setReferencePoint(e.target.value)}
                       />
 
                       <label htmlFor="inputBairro">
@@ -103,7 +201,7 @@ export default function AddressForm() {
                         id="inputBairro"
                         autocomplete="address-level3"
                         placeholder="Ex.: Centro"
-                        value={dadosCep.bairro}
+                        onChange={(e) => setNeighborhood(e.target.value)}
                       />
 
                       <label htmlFor="inputCidade">
@@ -115,27 +213,65 @@ export default function AddressForm() {
                         id="inputCidade"
                         autocomplete="address-level2"
                         placeholder="Ex.: São Paulo - SP"
-                        value={dadosCep.localidade}
+                        onChange={(e) => setCity(e.target.value)}
                       />
 
                       <label htmlFor="inputEstado">
                         <span className="detalhe-red">*</span>Estado
                       </label>
-                      <input
-                        type="text"
-                        className="form-control rounded-3 mb-3 form-minusculo"
+                      <select
+                        name="inputEstado"
                         id="inputEstado"
-                        autocomplete="address-level1"
-                        placeholder="Ex.: SP"
-                        value={dadosCep.uf}
-                      />
+                        onChange={(e) => {
+                          setState(e.target.value);
+                          console.log(e.target.value);
+                        }}
+                      >
+                        <option value="AC">AC</option>
+                        <option value="AL">AL</option>
+                        <option value="AP">AP</option>
+                        <option value="AM">AM</option>
+                        <option value="BA">BA</option>
+                        <option value="CE">CE</option>
+                        <option value="DF">DF</option>
+                        <option value="ES">ES</option>
+                        <option value="GO">GO</option>
+                        <option value="MA">MA</option>
+                        <option value="MT">MT</option>
+                        <option value="MS">MS</option>
+                        <option value="MG">MG</option>
+                        <option value="PA">PA</option>
+                        <option value="PB">PB</option>
+                        <option value="PR">PR</option>
+                        <option value="PE">PE</option>
+                        <option value="PI">PI</option>
+                        <option value="RJ">RJ</option>
+                        <option value="RN">RN</option>
+                        <option value="RS">RS</option>
+                        <option value="RO">RO</option>
+                        <option value="RR">RR</option>
+                        <option value="SC">SC</option>
+                        <option value="SP">SP</option>
+                        <option value="SE">SE</option>
+                        <option value="TO">TO</option>
+                      </select>
+                      <div className="d-flex justify-content-center">
+                        <button className="btn btn-primary mb-3">
+                          Salvar Endereço
+                        </button>
+                      </div>
+                      {showError && (
+                        <Alert severity="error">
+                          Houve algum erro no cadastro, tente novamente.
+                        </Alert>
+                      )}
+                      {showSuccess && (
+                        <Alert severity="success">
+                          Cadastro de endereço efetuado com sucesso.
+                        </Alert>
+                      )}
                     </form>
                   </fieldset>
-                </div>
-                <div className="d-flex justify-content-center">
-                  <a className="btn btn-primary mb-3" href="Form-Endereco.html">
-                    Salvar Endereço
-                  </a>
                 </div>
               </div>
             </div>

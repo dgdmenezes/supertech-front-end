@@ -30,7 +30,6 @@ export default function Logged() {
       })
       .then((data) => {
         setCurrentUser(data);
-        console.log(currentUser);
         setIsLoading(false);
         if (currentUser.role === "user") {
           setShowUser(true);
@@ -44,7 +43,7 @@ export default function Logged() {
         removeToken();
         navigate("/");
       });
-  }, []);
+  }, [currentUser.role, navigate, setCurrentUser, token]);
   return isLoading ? (
     <AppLoading />
   ) : (

@@ -73,7 +73,9 @@ export default function CustomerPage() {
                     )}
 
                     <h6>
-                      <Link>Adicionar novo endereço?</Link>
+                      <Link to="/register/address">
+                        Adicionar novo endereço?
+                      </Link>
                     </h6>
                   </fieldset>
                 </div>

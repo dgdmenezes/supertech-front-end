@@ -4,6 +4,7 @@ import { getToken, removeToken } from "../../helpers/Auth";
 export default function VerifyValidToken() {
   const token = getToken();
 
+  /*
   const fetchOptions = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -20,6 +21,6 @@ export default function VerifyValidToken() {
     .catch(() => {
       removeToken();
     });
-
+*/
   return <div></div>;
 }
