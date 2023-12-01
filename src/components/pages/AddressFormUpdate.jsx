@@ -104,7 +104,6 @@ export default function AddressForm() {
         setShowError(true);
       });
   };
-
   const autoFillAddress = (cep) => {
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
       .then((res) => res.json())
@@ -120,6 +119,7 @@ export default function AddressForm() {
       })
       .catch((err) => console.log(err));
   };
+
   return (
     <div>
       <DefaultSimple>
@@ -164,7 +164,6 @@ export default function AddressForm() {
                         id="inputCEP"
                         placeholder="Ex.: 00000-000"
                         onChange={(e) => setCep(e.target.value)}
-                        onBlur={(e) => autoFillAddress(e.target.value)}
                       />
 
                       <label htmlFor="inputEndereco">
@@ -245,8 +244,8 @@ export default function AddressForm() {
                         <span className="detalhe-red">*</span>Estado
                       </label>
                       <select
-                        name="optionEstado"
-                        id="optionEstado"
+                        name="inputEstado"
+                        id="inputEstado"
                         onChange={(e) => {
                           setState(e.target.value);
                           console.log(e.target.value);

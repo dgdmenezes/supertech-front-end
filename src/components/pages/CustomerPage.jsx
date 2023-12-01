@@ -38,10 +38,12 @@ export default function CustomerPage() {
         setShowAddress(true);
         setShowPurchases(true);
         setIsLoading(false);
+        console.log("deu certo");
       })
       .catch(() => {
         removeToken();
         navigate("/");
+        console.log("deu certo");
       });
   }, [navigate, setCurrentUser, token]);
 
@@ -114,7 +116,11 @@ export default function CustomerPage() {
                 <div className="form-div shadow rounded-4">
                   <fieldset>
                     <legend>Meus Cadastro</legend>
-                    <h6>Clique aqui para alterar os dados do seu cadastro</h6>
+                    <h6>
+                      <Link>
+                        Clique aqui para alterar os dados do seu cadastro
+                      </Link>
+                    </h6>
                   </fieldset>
                 </div>
               </form>

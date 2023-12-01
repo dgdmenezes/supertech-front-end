@@ -20,6 +20,7 @@ import Err404 from "./components/pages/Err404";
 import AdminRegisterProduct from "./components/pages/AdminRegisterProduct";
 import Logout from "./components/pages/Logout";
 import LoginForm from "./components/pages/LoginForm";
+import ModalAddressDelete from "./components/molecules/ModalAddressDelete";
 import AddressCustumerPageItem from "./components/molecules/AddressCustumerPageItem";
 import Logged from "./components/pages/Logged";
 
@@ -59,7 +60,8 @@ export default function App() {
           <Route path="/chart" element={<ChartPage />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/admin" element={<AdminRegisterProduct />} />
-          <Route path="/test" element={<AddressCustumerPageItem />} />
+          <Route path="/test" element={<ModalAddressDelete />} />
+          <Route path="/test2" element={<AddressCustumerPageItem />} />
 
           <Route
             path="/login"
