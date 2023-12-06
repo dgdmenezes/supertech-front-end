@@ -29,13 +29,13 @@ export default function AddressForm() {
   const token = getToken();
 
   React.useEffect(() => {
-    const fetchOptions = {
+    const fetchOptionsToken = {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     };
 
-    fetch("http://localhost:3001/users/token", fetchOptions)
+    fetch("http://localhost:3001/users/token", fetchOptionsToken)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -87,6 +87,7 @@ export default function AddressForm() {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
+        console.log(fetchOptions);
         return response.json();
       })
       .then(() => {
@@ -94,7 +95,7 @@ export default function AddressForm() {
           navigate("/logged");
         }, 1000);
         setShowSuccess(true);
-        console.log("deu certo");
+        console.log(fetchOptions.body);
       })
       .catch((e) => {
         setTimeout(() => {
@@ -105,7 +106,7 @@ export default function AddressForm() {
       });
   };
 
-  const autoFillAddress = (cep) => {
+  /*const autoFillAddress = (cep) => {
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
       .then((res) => res.json())
       .then((data) => {
@@ -119,7 +120,7 @@ export default function AddressForm() {
         optionEstado.value = data.uf;
       })
       .catch((err) => console.log(err));
-  };
+  };*/
   return (
     <div>
       <DefaultSimple>
@@ -164,7 +165,7 @@ export default function AddressForm() {
                         id="inputCEP"
                         placeholder="Ex.: 00000-000"
                         onChange={(e) => setCep(e.target.value)}
-                        onBlur={(e) => autoFillAddress(e.target.value)}
+                        /*onBlur={(e) => autoFillAddress(e.target.value)}*/
                       />
 
                       <label htmlFor="inputEndereco">
