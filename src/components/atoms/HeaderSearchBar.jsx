@@ -3,26 +3,21 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./HeaderSearchBar.module.css";
 
 export default function HeaderSearchBar() {
-  const [query, setQuery] = React.useState();
   const [searchResults, setSearchResults] = React.useState([]);
   const [typingTimeOut, setTypingTimeOut] = React.useState(null);
-
+  const URLConnection = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
   //const [searchBar, setSearchBar] = React.useState("");
 
   // fetch()
 
   const handleInputChange = (e) => {
-    setQuery(e);
-
     if (typingTimeOut) {
       clearTimeout(typingTimeOut);
     }
 
     const timeout = setTimeout(() => {
-      fetch(
-        `http://localhost:3001/products/searchbar/find?tags=${query}&limit=3&skip=0`
-      )
+      fetch(`${URLConnection}/products/searchbar/find?tags=${e}&limit=3&skip=0`)
         .then((response) => {
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -48,7 +43,6 @@ export default function HeaderSearchBar() {
         placeholder="Buscar..."
         aria-label="Search"
         onKeyDown={(e) => checkEnter(e)}
-        value={query}
         onChange={(e) => {
           handleInputChange(e.target.value);
         }}

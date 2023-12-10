@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { GlobalContex } from "../../contexts/GlobalContext";
 
 export default function Card(props) {
+  const { cart, setCart } = React.useContext(GlobalContex);
+
   const iconStyle = {
     background: "lightGrey",
     color: "#000",
@@ -11,14 +14,42 @@ export default function Card(props) {
     margin: "5px 0 0 0",
   };
 
+  const handleAddToCart = (product) => {
+    const isProduct = cart.find((item) => item.productID === product._id);
+    if (isProduct) {
+      // Se o produto já está no carrinho, incrementa a quantidade
+      setCart((prevState) =>
+        prevState.map((item) =>
+          item.productID === product._id
+            ? { ...item, productQt: item.productQt + 1 }
+            : item
+        )
+      );
+    } else {
+      setCart((prevState) => [
+        ...prevState,
+        {
+          productID: product._id,
+          productName: product.name,
+          productPrice: product.price,
+          productQt: 1,
+          productImage: product.image,
+          productCategory: product.category,
+        },
+      ]);
+    }
+    console.log();
+  };
+
   return (
     <div className="col-sm-6 col-md-4 col-lg-3" id={props.product._id}>
       <div className="card border-primary card-back-style shadow">
         <div className="d-flex container justify-content-end CardIconDiv">
           <div>
-            <Link to={`/product/${props.product._id}`}>
-              <AddShoppingCartIcon style={iconStyle}></AddShoppingCartIcon>
-            </Link>
+            <AddShoppingCartIcon
+              style={iconStyle}
+              onClick={() => handleAddToCart(props.product)}
+            ></AddShoppingCartIcon>
           </div>
         </div>
 

@@ -46,8 +46,20 @@ const ProtectedRoute = () => {
 
 export default function App() {
   const [currentUser, setCurrentUser] = React.useState("");
+  const [cart, setCart] = React.useState([]);
+  const [cartTotalPrice, setCartTotalPrice] = React.useState();
+  const [cartTotalItens, setCartTotalItens] = React.useState(0);
 
-  const contextValues = { currentUser, setCurrentUser };
+  const contextValues = {
+    currentUser,
+    setCurrentUser,
+    cart,
+    setCart,
+    cartTotalPrice,
+    setCartTotalPrice,
+    cartTotalItens,
+    setCartTotalItens,
+  };
 
   return (
     <GlobalContex.Provider value={contextValues}>
