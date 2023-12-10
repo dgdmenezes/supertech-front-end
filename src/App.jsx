@@ -23,7 +23,7 @@ import LoginForm from "./components/pages/LoginForm";
 import TestHeaderSearchBar from "./components/atoms/TestHeaderSearchBar";
 import AddressCustumerPageItem from "./components/molecules/AddressCustumerPageItem";
 import Logged from "./components/pages/Logged";
-import AddressFormUpdate from "./components/pages/AddressFormUpdate";
+import SearchPage from "./components/pages/SearchPage";
 
 import { GlobalContex } from "./contexts/GlobalContext";
 
@@ -56,6 +56,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/product/:productId" element={<ProductPage />} />
           <Route path="/category/:categoryName" element={<CategoryPage />} />
+          <Route path="/search/:searchTag" element={<SearchPage />} />
           <Route path="/register" element={<RegisterForm />} />
 
           <Route path="/chart" element={<ChartPage />} />

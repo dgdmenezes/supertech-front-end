@@ -6,6 +6,7 @@ export default function CardGroup(props) {
   const URI = props.URL;
   const [products, setProducts] = React.useState([]);
   const [isLoading, SetIsLoading] = React.useState(true);
+  const [showNoProducts, setShowNoProdutcts] = React.useState(false);
 
   React.useEffect(() => {
     fetch(`${URI}`)
@@ -13,6 +14,10 @@ export default function CardGroup(props) {
       .then((data) => {
         setProducts(data);
         SetIsLoading(false);
+
+        if (data.length === 0) {
+          setShowNoProdutcts(true);
+        }
       });
   }, [URI]);
 
@@ -25,6 +30,10 @@ export default function CardGroup(props) {
           <Card product={product} key={product._id} />
         ))}
       </div>
+      <div></div>
+      {!!showNoProducts && (
+        <h2>Ops... não achamos nenhum produto relacionado :(</h2>
+      )}
     </div>
   );
 }

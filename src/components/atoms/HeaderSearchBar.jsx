@@ -1,12 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./HeaderSearchBar.module.css";
 
 export default function HeaderSearchBar() {
   const [query, setQuery] = React.useState();
   const [searchResults, setSearchResults] = React.useState([]);
   const [typingTimeOut, setTypingTimeOut] = React.useState(null);
-  const [searchBar, setSearchBar] = React.useState("");
+
+  const navigate = useNavigate();
+  //const [searchBar, setSearchBar] = React.useState("");
 
   // fetch()
 
@@ -19,7 +21,7 @@ export default function HeaderSearchBar() {
 
     const timeout = setTimeout(() => {
       fetch(
-        `http://localhost:3001/products/searchbar/find?tags=${query}&limit=3`
+        `http://localhost:3001/products/searchbar/find?tags=${query}&limit=3&skip=0`
       )
         .then((response) => {
           if (!response.ok) {
@@ -32,6 +34,12 @@ export default function HeaderSearchBar() {
     setTypingTimeOut(timeout);
   };
 
+  const checkEnter = (e) => {
+    if (e.key === "Enter") {
+      navigate(`/search/${e.target.value}`);
+    }
+  };
+
   return (
     <form className={`${styles.searchbar} w-100 me-3`} role="search">
       <input
@@ -39,6 +47,7 @@ export default function HeaderSearchBar() {
         className="form-control"
         placeholder="Buscar..."
         aria-label="Search"
+        onKeyDown={(e) => checkEnter(e)}
         value={query}
         onChange={(e) => {
           handleInputChange(e.target.value);
