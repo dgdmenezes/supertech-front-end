@@ -1,6 +1,12 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function ProductShow(props) {
+  const navigate = useNavigate();
+
+  const buttonClick = () => {
+    navigate("/cart");
+  };
   return (
     <div className="row ">
       <div className="offset-1 col-1 div-group-thumb-image">
@@ -100,7 +106,11 @@ export default function ProductShow(props) {
           </div>
           <div className="d-flex ">
             <div>
-              <button className="btn btn-primary mb-3" id="addCarrinho">
+              <button
+                className="btn btn-primary mb-3"
+                id="addCarrinho"
+                onClick={() => buttonClick()}
+              >
                 comprar
               </button>
             </div>

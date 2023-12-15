@@ -1,13 +1,11 @@
 import React from "react";
 import Loading from "../atoms/Loading";
-import DeleteIcon from "@mui/icons-material/Delete";
-import UpdateIcon from "@mui/icons-material/Update";
-import ModalAddressDelete from "../molecules/ModalAddressDelete";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Radio from "@mui/material/Radio";
 
 export default function AddressCustumerPageItem(props) {
   const [isLoading, setIsLoading] = React.useState(true);
   const [address, setAddress] = React.useState("");
-  const [open, setOpen] = React.useState(false);
   const URLConnection = process.env.REACT_APP_API_URL;
 
   React.useEffect(() => {
@@ -32,17 +30,13 @@ export default function AddressCustumerPageItem(props) {
         </p>
       </div>
       <div className="d-flex align-items-center">
-        <div>
-          <UpdateIcon alt="atualizar endereço" />
-        </div>
-        <div>
-          <DeleteIcon onClick={() => setOpen(true)} />
-        </div>
-        <ModalAddressDelete
-          open={open}
-          setOpen={setOpen}
-          address={props.address}
-          nameAddress={address.nameAddress}
+        <FormControlLabel
+          value={address._id}
+          control={<Radio />}
+          label={address.nameAddress}
+          onClick={() => {
+            props.setShippingAddress(`${address._id}`);
+          }}
         />
       </div>
     </div>

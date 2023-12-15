@@ -10,7 +10,6 @@ import {
 //importação de páginas
 import AddressForm from "./components/pages/AddressForm";
 import CategoryPage from "./components/pages/CategoryPage";
-import ChartPage from "./components/pages/ChartPage";
 import Checkout from "./components/pages/Checkout";
 import CustomerPage from "./components/pages/CustomerPage";
 import ProductPage from "./components/pages/ProductPage";
@@ -20,10 +19,11 @@ import Err404 from "./components/pages/Err404";
 import AdminRegisterProduct from "./components/pages/AdminRegisterProduct";
 import Logout from "./components/pages/Logout";
 import LoginForm from "./components/pages/LoginForm";
-import TestHeaderSearchBar from "./components/atoms/TestHeaderSearchBar";
-import AddressCustumerPageItem from "./components/molecules/AddressCustumerPageItem";
 import Logged from "./components/pages/Logged";
 import SearchPage from "./components/pages/SearchPage";
+import CartPage from "./components/pages/CartPage";
+import PaymentSuccess from "./components/pages/PaymentSuccess";
+import PaymentError from "./components/pages/PaymentError";
 
 import { GlobalContex } from "./contexts/GlobalContext";
 
@@ -47,8 +47,9 @@ const ProtectedRoute = () => {
 export default function App() {
   const [currentUser, setCurrentUser] = React.useState("");
   const [cart, setCart] = React.useState([]);
-  const [cartTotalPrice, setCartTotalPrice] = React.useState();
+  const [cartTotalPrice, setCartTotalPrice] = React.useState(0);
   const [cartTotalItens, setCartTotalItens] = React.useState(0);
+  const [paymentID, setPaymentID] = React.useState("");
 
   const contextValues = {
     currentUser,
@@ -59,6 +60,8 @@ export default function App() {
     setCartTotalPrice,
     cartTotalItens,
     setCartTotalItens,
+    paymentID,
+    setPaymentID,
   };
 
   return (
@@ -71,11 +74,13 @@ export default function App() {
           <Route path="/search/:searchTag" element={<SearchPage />} />
           <Route path="/register" element={<RegisterForm />} />
 
-          <Route path="/chart" element={<ChartPage />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/admin" element={<AdminRegisterProduct />} />
-          <Route path="/test" element={<TestHeaderSearchBar />} />
-          <Route path="/test2" element={<AddressCustumerPageItem />} />
+          <Route path="/cart/checkout/success" element={<PaymentSuccess />} />
+          <Route path="/cart/checkout/error" element={<PaymentError />} />
+
+          <Route path="/cart" element={<CartPage />} />
+          <Route element={<Checkout />} path="/cart/checkout" />
 
           <Route
             path="/login"
@@ -96,6 +101,7 @@ export default function App() {
                 />
               }
             />
+
             <Route
               path="/customer"
               element={

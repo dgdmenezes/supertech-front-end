@@ -5,7 +5,6 @@ import { Alert } from "@mui/material";
 import { Link } from "react-router-dom";
 import { saveToken } from "../../helpers/Auth";
 import { useNavigate } from "react-router-dom";
-import VerifyValidToken from "../atoms/VerifyValidToken";
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -57,7 +56,6 @@ export default function LoginForm() {
   return (
     <div>
       <DefaultSimple>
-        <VerifyValidToken />
         <div className="row login-div">
           <div className="col-xxl-6 offset-xxl-3 col-md-8 offset-md-2 col-sm-12 offset-sm-0 col-xs-12 offset-xs-0">
             <div className=" login-form-div" role="document">

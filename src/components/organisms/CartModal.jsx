@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import ModalItem from "../molecules/ModalItem";
 import { GlobalContex } from "../../contexts/GlobalContext";
+import { Link } from "react-router-dom";
 
 export default function CartModal(props) {
   const handleClose = () => props.setShow(false);
@@ -72,13 +73,9 @@ export default function CartModal(props) {
           <Button variant="secondary" onClick={handleClose}>
             Fechar
           </Button>
-          <Button
-            variant="primary"
-            className="btn btn-primary"
-            onClick={handleClose}
-          >
+          <Link variant="primary" className="btn btn-primary" to="/cart">
             Finalizar Compra
-          </Button>
+          </Link>
         </Modal.Footer>
       </Modal>
     </div>

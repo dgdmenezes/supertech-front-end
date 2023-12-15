@@ -105,7 +105,25 @@ export default function AddressForm() {
         setShowError(true);
       });
   };
+  const handleCepChange = async (newCep) => {
+    const debounce = (func, delay) => {
+      clearTimeout(debounce.timer);
+      debounce.timer = setTimeout(() => func(), delay);
+    };
 
+    const execute = async () => {
+      try {
+        const response = await fetch(
+          `https://viacep.com.br/ws/${newCep}/json/`
+        );
+        const data = await response.json();
+        setAddress(data.logradouro);
+        setCity(data.localidade);
+        setState(data.uf);
+      } catch (error) {}
+    };
+    debounce(execute, 5000);
+  };
   /*const autoFillAddress = (cep) => {
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
       .then((res) => res.json())
@@ -164,7 +182,8 @@ export default function AddressForm() {
                         className="form-control rounded-3 mb-3 form-pequeno"
                         id="inputCEP"
                         placeholder="Ex.: 00000-000"
-                        onChange={(e) => setCep(e.target.value)}
+                        onChange={(e) => handleCepChange(e.target.value)}
+                        //onChange={(e) => setCep(e.target.value)}
                         /*onBlur={(e) => autoFillAddress(e.target.value)}*/
                       />
 
@@ -237,6 +256,7 @@ export default function AddressForm() {
                         type="text"
                         className="form-control rounded-3 mb-3 form-medio"
                         id="inputCidade"
+                        value={city}
                         autocomplete="address-level2"
                         placeholder="Ex.: São Paulo - SP"
                         onChange={(e) => setCity(e.target.value)}

@@ -1,8 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Loading from "../atoms/Loading";
 import AddressCustumerPageItem from "../molecules/AddressCustumerPageItem";
-import { Link } from "react-router-dom";
 
 import { GlobalContex } from "../../contexts/GlobalContext";
 
@@ -120,6 +119,7 @@ export default function CustomerPage() {
                       <Link>
                         Clique aqui para alterar os dados do seu cadastro
                       </Link>
+                      <Link to="/cart/checkout">Teste Payment</Link>
                     </h6>
                   </fieldset>
                 </div>

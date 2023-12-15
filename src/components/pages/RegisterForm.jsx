@@ -1,7 +1,6 @@
 import React from "react";
 import DefaultSimple from "../templates/DefaultSimple";
 import { useNavigate } from "react-router-dom";
-import VerifyValidToken from "../atoms/VerifyValidToken";
 
 export default function RegisterForm() {
   const navigate = useNavigate();
@@ -13,6 +12,8 @@ export default function RegisterForm() {
   const [birthDate, setBirthDate] = React.useState("");
   const [cpf, setCpf] = React.useState("");
   const [phoneNumber, setPhoneNumber] = React.useState("");
+
+  const URLConnection = process.env.REACT_APP_API_URL;
 
   const fetchOptions = {
     method: "POST",
@@ -32,7 +33,7 @@ export default function RegisterForm() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:3001/users", fetchOptions)
+    fetch(`${URLConnection}/users`, fetchOptions)
       .then(() => {
         setEmail("");
         setPassword("");
@@ -49,7 +50,6 @@ export default function RegisterForm() {
   return (
     <div>
       <DefaultSimple>
-        <VerifyValidToken />
         <div className="col-xs-12 col-sm-12  col-md-10 offset-md-1 col-lg-10 offset-lg-1 col-xl-10 offset-xl-1">
           <div
             className="back-outside shadow col-xl-8 offset-xl-2"
