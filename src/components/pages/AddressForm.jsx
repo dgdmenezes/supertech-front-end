@@ -105,7 +105,7 @@ export default function AddressForm() {
         setShowError(true);
       });
   };
-  const handleCepChange = async (newCep) => {
+  /*const handleCepChange = async (newCep) => {
     const debounce = (func, delay) => {
       clearTimeout(debounce.timer);
       debounce.timer = setTimeout(() => func(), delay);
@@ -123,7 +123,7 @@ export default function AddressForm() {
       } catch (error) {}
     };
     debounce(execute, 5000);
-  };
+  };*/
   /*const autoFillAddress = (cep) => {
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
       .then((res) => res.json())
@@ -182,8 +182,8 @@ export default function AddressForm() {
                         className="form-control rounded-3 mb-3 form-pequeno"
                         id="inputCEP"
                         placeholder="Ex.: 00000-000"
-                        onChange={(e) => handleCepChange(e.target.value)}
-                        //onChange={(e) => setCep(e.target.value)}
+                        //onChange={(e) => handleCepChange(e.target.value)}
+                        onChange={(e) => setCep(e.target.value)}
                         /*onBlur={(e) => autoFillAddress(e.target.value)}*/
                       />
 
