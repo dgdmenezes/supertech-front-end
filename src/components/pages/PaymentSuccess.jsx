@@ -1,9 +1,19 @@
 import React from "react";
+import Default from "../templates/Default";
+import Carousel from "../molecules/Carousel";
+import CardGroup from "../organisms/CardGroup";
+
+import PaymentSuccessModal from "../organisms/PaymentSuccessModal";
 
 export default function PaymentSuccess() {
+  const URLConnection = process.env.REACT_APP_API_URL;
+  const URL = `${URLConnection}/products/index/index?skip=0&limit=12`;
+
   return (
-    <div className="bg-primary">
-      <h1>Pagamento efetuado com sucesso!</h1>
-    </div>
+    <Default>
+      <PaymentSuccessModal />
+      <Carousel />
+      <CardGroup URL={URL} />
+    </Default>
   );
 }

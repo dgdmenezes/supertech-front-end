@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button";
 export default function CartPage() {
   const { cart, cartTotalPrice, currentUser, setPaymentID } =
     React.useContext(GlobalContex);
-  console.log(cart);
+  const [updateCart, setUpdateCart] = React.useState(0);
 
   const URLConnection = process.env.REACT_APP_API_URL;
 
@@ -19,6 +19,31 @@ export default function CartPage() {
     subTotalPrice: cartTotalPrice + 30,
     shippingPrice: 30,
     totalPrice: cartTotalPrice,
+  };
+  const forceRender = () => {
+    setUpdateCart((prevState) => prevState + 1);
+  };
+
+  const incrementCartItem = (id) => {
+    const found = cart.find((item) => item.productID === id);
+    let quantidade = found.productQt;
+    quantidade += 1;
+    found.productQt = quantidade;
+    forceRender();
+  };
+
+  const decrementCartItem = (id) => {
+    const found = cart.find((item) => item.productID === id);
+    let quantidade = found.productQt;
+    quantidade -= 1;
+    if (quantidade === 0) {
+      const index = cart.findIndex((element) => element === found);
+      cart.splice(index, 1);
+    } else {
+      found.productQt = quantidade;
+    }
+
+    forceRender();
   };
 
   const finalizePurchase = () => {
@@ -33,8 +58,8 @@ export default function CartPage() {
     fetch(`${URLConnection}/purchase/`, fetchOptions)
       .then((res) => res.json())
       .then((data) => {
-        setPaymentID(data._id);
-        navigate("/cart/payment");
+        setPaymentID(data.purchase._id);
+        navigate("/cart/checkout");
       })
       .catch((e) => console.log("erro", e));
   };
@@ -43,7 +68,14 @@ export default function CartPage() {
       <div>
         <h3>Meu carrinho</h3>
         {cart.map((item) => {
-          return <CartPageItem item={item} key={item.productId} />;
+          return (
+            <CartPageItem
+              item={item}
+              key={item.productId}
+              incrementCartItem={incrementCartItem}
+              decrementCartItem={decrementCartItem}
+            />
+          );
         })}
       </div>
       <hr />

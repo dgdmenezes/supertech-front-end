@@ -9,17 +9,18 @@ import ProductShow from "../organisms/ProductShow";
 import { useParams } from "react-router-dom";
 
 export default function ProductPage() {
-  const URL = "http://localhost:3001/products/index/index?skip=0&limit=4";
+  const URLConnection = process.env.REACT_APP_API_URL;
+  const URL = `${URLConnection}/products/index/index?skip=0&limit=4`;
   const { productId } = useParams();
   const [product, setProduct] = React.useState([]);
 
   React.useEffect(() => {
-    fetch(`http://localhost:3001/products/${productId}`)
+    fetch(`${URLConnection}/products/${productId}`)
       .then((res) => res.json())
       .then((data) => {
         setProduct(data);
       });
-  }, [productId]);
+  }, [productId, URLConnection]);
 
   return (
     <Default>

@@ -7,7 +7,6 @@ import AddressPaymentPageItem from "../molecules/AddressPaymentPageItem";
 import { Link } from "react-router-dom";
 import FormControl from "@mui/material/FormControl";
 import RadioGroup from "@mui/material/RadioGroup";
-import PixIcon from "@mui/icons-material/Pix";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -24,11 +23,13 @@ export default function Checkout() {
   const [showAddress, setShowAddress] = React.useState(true);
   const [shippingAddress, setShippingAddress] = React.useState("");
   const [paymentMethod, setPaymentMethod] = React.useState("");
+  const [showPaymentMehod, setShowPaymentMehod] = React.useState(false);
+  const [showPaymentButton, setShowPaymentButton] = React.useState(false);
 
-  console.log("id do pagamento", paymentID);
-  //6577937f922a400702a02da0
+  console.log("ID DE PAGAMENTO: ", paymentID);
+
   React.useEffect(() => {
-    fetch(`${URLConnection}/purchase/6577937f922a400702a02da0`)
+    fetch(`${URLConnection}/purchase/${paymentID}`)
       .then((res) => res.json())
       .then((data) => {
         setPaymentData(data);
@@ -36,20 +37,31 @@ export default function Checkout() {
         setShowAddress(true);
       })
       .catch((err) => console.log(err));
-  }, [URLConnection]);
+  }, [URLConnection, paymentID]);
+  console.log(paymentID);
+
+  /*const updatePaymentMehod = () =>{
+
+  }*/
 
   const makePayment = async () => {
     const stripe = await loadStripe(stripeKey);
 
     const body = {
       products: paymentData,
+      paymentMethod: paymentMethod,
+      address: shippingAddress,
+      addressCountry: "brazil",
+      customerName: currentUser.name,
+      customerCPF: currentUser.cpf,
+      customerEmail: currentUser.email,
     };
 
     const headers = {
       "Content-Type": "application/json",
     };
 
-    const response = await fetch(`${URLConnection}/payment`, {
+    const response = await fetch(`${URLConnection}/purchase/payment`, {
       method: "POST",
       headers: headers,
       body: JSON.stringify(body),
@@ -68,7 +80,7 @@ export default function Checkout() {
   console.log("envio id", shippingAddress);
   console.log("metodo de pagamento", paymentMethod);
   console.log("metodo de pagamento", paymentData);
-
+  console.log();
   return isLoading ? (
     <Loading />
   ) : (
@@ -130,6 +142,7 @@ export default function Checkout() {
                               address={address}
                               shippingAddress={shippingAddress}
                               setShippingAddress={setShippingAddress}
+                              setShowPaymentMehod={setShowPaymentMehod}
                             />
                           );
                         })}
@@ -148,51 +161,66 @@ export default function Checkout() {
             </div>
           </form>
         </div>
-        <div>
-          <h5>Vai utilizar qual método de pagamento?</h5>
-          <FormControl>
-            <RadioGroup
-              aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue="female"
-              name="radio-buttons-group"
-            >
-              <div>
-                <PixIcon />{" "}
-                <FormControlLabel
-                  value="pix"
-                  control={<Radio />}
-                  label="PIX"
-                  onClick={(e) => setPaymentMethod(e.target.value)}
-                />
-              </div>
-              <div>
-                <CreditCardIcon />
-                <FormControlLabel
-                  value="creditCard"
-                  control={<Radio />}
-                  label="Cartão de Crédito"
-                  onClick={(e) => setPaymentMethod(e.target.value)}
-                />
-              </div>
-              <div>
-                <ReceiptIcon />
-                <FormControlLabel
-                  value="boleto"
-                  control={<Radio />}
-                  label="Boleto"
-                  onClick={(e) => setPaymentMethod(e.target.value)}
-                />
-              </div>
-            </RadioGroup>
-          </FormControl>
-        </div>
-        <Button
-          variant="primary"
-          className="btn btn-primary"
-          onClick={makePayment}
-        >
-          Ir para pagamento
-        </Button>
+        {!showPaymentMehod && (
+          <div>
+            <h5>
+              Para Ir para o pagamento é necessário selecionar um endereço
+            </h5>
+          </div>
+        )}
+        {!!showPaymentMehod && (
+          <div>
+            <h5>Vai utilizar qual método de pagamento?</h5>
+            <FormControl>
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue="female"
+                name="radio-buttons-group"
+              >
+                <div>
+                  <CreditCardIcon />
+                  <FormControlLabel
+                    value="card"
+                    control={<Radio />}
+                    label="Cartão de Crédito"
+                    onClick={(e) => {
+                      setPaymentMethod(e.target.value);
+                      setShowPaymentButton(true);
+                    }}
+                  />
+                </div>
+                <div>
+                  <ReceiptIcon />
+                  <FormControlLabel
+                    value="boleto"
+                    control={<Radio />}
+                    label="Boleto"
+                    onClick={(e) => {
+                      setPaymentMethod(e.target.value);
+                      setShowPaymentButton(true);
+                    }}
+                  />
+                </div>
+              </RadioGroup>
+            </FormControl>
+            {!showPaymentButton && (
+              <h5>
+                Para finalizar o pagamento é necessário selecionar um método de
+                pagamento
+              </h5>
+            )}
+          </div>
+        )}
+
+        {!!showPaymentButton && (
+          <Button
+            variant="primary"
+            className="btn btn-primary"
+            onClick={makePayment}
+          >
+            Ir para pagamento
+          </Button>
+        )}
       </div>
     </Default>
   );

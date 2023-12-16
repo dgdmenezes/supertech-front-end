@@ -1,11 +1,57 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { GlobalContex } from "../../contexts/GlobalContext";
 
 export default function ProductShow(props) {
+  const { cart, setCart } = React.useContext(GlobalContex);
+  const [qtItem, setQtItem] = React.useState(1);
+
   const navigate = useNavigate();
 
-  const buttonClick = () => {
+  const incrementItem = () => {
+    let quantidade = qtItem;
+    quantidade += 1;
+    setQtItem(quantidade);
+  };
+
+  const decrementItem = () => {
+    let quantidade = qtItem;
+    quantidade -= 1;
+    if (quantidade === 0) {
+      setQtItem(1);
+    } else {
+      setQtItem(quantidade);
+    }
+  };
+
+  const handleAddToCart = (product) => {
+    const isProduct = cart.find((item) => item.productID === product._id);
+    if (isProduct) {
+      // Se o produto já está no carrinho, incrementa a quantidade
+      setCart((prevState) =>
+        prevState.map((item) =>
+          item.productID === product._id ? { ...item, productQt: qtItem } : item
+        )
+      );
+    } else {
+      setCart((prevState) => [
+        ...prevState,
+        {
+          productID: product._id,
+          productName: product.name,
+          productDescription: `${product.category} ${product.brand} ${product.name}`,
+          productPrice: product.price,
+          productQt: qtItem,
+          productImage: product.image,
+          productCategory: product.category,
+        },
+      ]);
+    }
     navigate("/cart");
+  };
+
+  const continueShopping = () => {
+    navigate("/");
   };
   return (
     <div className="row ">
@@ -91,15 +137,23 @@ export default function ProductShow(props) {
               <p>Quantidade:</p>
             </div>
             <div>
-              <button className="btn btn-primary mb-3" id="plusItem">
+              <button
+                className="btn btn-primary mb-3"
+                id="plusItem"
+                onClick={() => incrementItem()}
+              >
                 +
               </button>
             </div>
             <div>
-              <p>1</p>
+              <p>{qtItem}</p>
             </div>
             <div>
-              <button className="btn btn-primary mb-3" id="MinusItem">
+              <button
+                className="btn btn-primary mb-3"
+                id="MinusItem"
+                onClick={() => decrementItem()}
+              >
                 -
               </button>
             </div>
@@ -109,9 +163,18 @@ export default function ProductShow(props) {
               <button
                 className="btn btn-primary mb-3"
                 id="addCarrinho"
-                onClick={() => buttonClick()}
+                onClick={() => continueShopping()}
               >
-                comprar
+                Continuar comprando
+              </button>
+            </div>
+            <div>
+              <button
+                className="btn btn-primary mb-3"
+                id="addCarrinho"
+                onClick={() => handleAddToCart(props.product)}
+              >
+                Adicionar ao carrinho
               </button>
             </div>
           </div>

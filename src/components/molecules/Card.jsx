@@ -31,6 +31,7 @@ export default function Card(props) {
         {
           productID: product._id,
           productName: product.name,
+          productDescription: `${product.category} ${product.brand} ${product.name}`,
           productPrice: product.price,
           productQt: 1,
           productImage: product.image,

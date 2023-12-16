@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Loading from "../atoms/Loading";
 import AddressCustumerPageItem from "../molecules/AddressCustumerPageItem";
+import PurchaseCustomerPageItem from "../molecules/PurchaseCustomerPageItem";
 
 import { GlobalContex } from "../../contexts/GlobalContext";
 
@@ -18,6 +19,8 @@ export default function CustomerPage() {
 
   const token = getToken();
 
+  const URLConnection = process.env.REACT_APP_API_URL;
+
   React.useEffect(() => {
     const fetchOptions = {
       headers: {
@@ -25,7 +28,7 @@ export default function CustomerPage() {
       },
     };
 
-    fetch("http://localhost:3001/users/token", fetchOptions)
+    fetch(`${URLConnection}/users/token`, fetchOptions)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -37,14 +40,12 @@ export default function CustomerPage() {
         setShowAddress(true);
         setShowPurchases(true);
         setIsLoading(false);
-        console.log("deu certo");
       })
       .catch(() => {
         removeToken();
         navigate("/");
-        console.log("deu certo");
       });
-  }, [navigate, setCurrentUser, token]);
+  }, [navigate, setCurrentUser, token, URLConnection]);
 
   return isLoading ? (
     <Loading />
@@ -67,7 +68,12 @@ export default function CustomerPage() {
                     <legend className="">Meus Endereços</legend>
                     {!!showAddress &&
                       currentUser.addresses.map((address) => {
-                        return <AddressCustumerPageItem address={address} />;
+                        return (
+                          <AddressCustumerPageItem
+                            address={address}
+                            key={address._id}
+                          />
+                        );
                       })}
                     {!showAddress && (
                       <h6>Você ainda não cadastrou nenhum endereço</h6>
@@ -94,14 +100,17 @@ export default function CustomerPage() {
                           <th>Data</th>
                           <th>Pagamento</th>
                           <th>Rastrear</th>
+                          <th>Detalhar</th>
                         </tr>
-                        <tr>
-                          <td>#25463</td>
-                          <td>Concluído</td>
-                          <td>20/05/2023</td>
-                          <td>PIX</td>
-                          <td>BR0321033DT</td>
-                        </tr>
+                        {currentUser.purchases.map((purchase, index) => {
+                          return (
+                            <PurchaseCustomerPageItem
+                              purchase={purchase}
+                              index={index}
+                              key={purchase._id}
+                            />
+                          );
+                        })}
                       </table>
                     )}
                     {!showPurchases && (
@@ -119,7 +128,6 @@ export default function CustomerPage() {
                       <Link>
                         Clique aqui para alterar os dados do seu cadastro
                       </Link>
-                      <Link to="/cart/checkout">Teste Payment</Link>
                     </h6>
                   </fieldset>
                 </div>

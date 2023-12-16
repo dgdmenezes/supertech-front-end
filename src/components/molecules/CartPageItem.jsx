@@ -18,13 +18,23 @@ export default function CartPageItem(props) {
       </div>
       <div className="modalItemQuantidade col-2">
         <div>
-          <button className="btn">+</button>
+          <button
+            className="btn"
+            onClick={() => props.incrementCartItem(props.item.productID)}
+          >
+            +
+          </button>
         </div>
         <div>
           <p>{props.item.productQt}</p>
         </div>
         <div>
-          <button className="btn">-</button>
+          <button
+            className="btn"
+            onClick={() => props.decrementCartItem(props.item.productID)}
+          >
+            -
+          </button>
         </div>
       </div>
       <div className="modalItemPreco col-2">

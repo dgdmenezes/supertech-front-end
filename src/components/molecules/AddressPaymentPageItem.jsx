@@ -35,7 +35,8 @@ export default function AddressCustumerPageItem(props) {
           control={<Radio />}
           label={address.nameAddress}
           onClick={() => {
-            props.setShippingAddress(`${address._id}`);
+            props.setShippingAddress({ address });
+            props.setShowPaymentMehod(true);
           }}
         />
       </div>

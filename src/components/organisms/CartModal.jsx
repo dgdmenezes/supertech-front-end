@@ -10,11 +10,38 @@ export default function CartModal(props) {
   const handleClose = () => props.setShow(false);
   const [noShowCartItens, setNoShowCartItens] = React.useState(true);
   const [ShowPriceCart, setShowCartPrice] = React.useState(false);
+  const [updateCart, setUpdateCart] = React.useState();
   const {
     cart,
     setCartTotalItens,
     cartTotalPrice /*, cartTotalPrice, setCartTotalPrice */,
   } = React.useContext(GlobalContex);
+
+  React.useEffect(() => {
+    console.log(updateCart);
+  }, [updateCart]);
+
+  const incrementCartItem = (id) => {
+    const found = cart.find((item) => item.productID === id);
+    let quantidade = found.productQt;
+    quantidade += 1;
+    found.productQt = quantidade;
+    setUpdateCart(cart); //força a atualização do estado
+  };
+
+  const decrementCartItem = (id) => {
+    const found = cart.find((item) => item.productID === id);
+    let quantidade = found.productQt;
+    quantidade -= 1;
+    if (quantidade === 0) {
+      const index = cart.findIndex((element) => element === found);
+      cart.splice(index, 1);
+    } else {
+      found.productQt = quantidade;
+    }
+
+    setUpdateCart(cart);
+  };
 
   React.useEffect(() => {
     if (cart.length !== 0) {
@@ -31,7 +58,7 @@ export default function CartModal(props) {
     });
   };
   sumCartQtdItens();
-  // console.log("modal", cart);
+
   return (
     <div>
       <Modal
@@ -46,9 +73,17 @@ export default function CartModal(props) {
         </Modal.Header>
         <Modal.Body className="grid-example">
           <Container>
-            {cart.map((item) => (
-              <ModalItem item={item} key={item._id} />
-            ))}
+            {cart.map((item) => {
+              let modalKey = `${item._id}modal`; //isso é para não repetir o mesmo numero de id dos cards com o modal e garantir o uniqueID
+              return (
+                <ModalItem
+                  item={item}
+                  key={modalKey}
+                  decrementCartItem={decrementCartItem}
+                  incrementCartItem={incrementCartItem}
+                />
+              );
+            })}
             {!!noShowCartItens && (
               <h3>
                 Opa... você ainda não colocou nenhum item no seu carrinho :(
