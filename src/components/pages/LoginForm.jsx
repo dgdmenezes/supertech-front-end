@@ -13,6 +13,7 @@ export default function LoginForm() {
   const [password, setPassword] = React.useState("");
   const [showError, setShowError] = React.useState(false);
   const [showSuccess, setShowSuccess] = React.useState(false);
+  const URLConnection = process.env.REACT_APP_API_URL;
 
   const fetchOptions = {
     method: "POST",
@@ -27,15 +28,16 @@ export default function LoginForm() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:3001/users/login", fetchOptions)
+    fetch(`${URLConnection}/users/login`, fetchOptions)
       .then((response) => {
+        console.log("Resposta do primeiro console", response);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         return response.json();
       })
       .then(({ token }) => {
-        console.log(token);
+        console.log("Resposta do segundo console", token);
         setShowSuccess(true);
         setTimeout(() => {
           saveToken(token);

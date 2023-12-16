@@ -6,13 +6,13 @@ import CardPagination from "../molecules/CardPagination";
 
 export default function CategoryPage() {
   const cardLimitShow = 12;
-
+  const URLConnection = process.env.REACT_APP_API_URL;
   const [skip, setSkip] = React.useState(0);
   const [limit, setLimit] = React.useState(cardLimitShow);
   const { categoryName } = useParams();
 
-  const URL = `http://localhost:3001/products/find/find?category=${categoryName}&skip=${skip}&limit=${limit}`;
-  const URLCount = `http://localhost:3001/products/find/count?category=${categoryName}`;
+  const URL = `${URLConnection}/products/find/find?category=${categoryName}&skip=${skip}&limit=${limit}`;
+  const URLCount = `${URLConnection}/products/find/count?category=${categoryName}`;
 
   return (
     <Default>

@@ -74,8 +74,6 @@ export default function App() {
           <Route path="/search/:searchTag" element={<SearchPage />} />
           <Route path="/register" element={<RegisterForm />} />
 
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/admin" element={<AdminRegisterProduct />} />
           <Route path="/cart/checkout/success" element={<PaymentSuccess />} />
           <Route path="/cart/checkout/error" element={<PaymentError />} />
 
@@ -92,6 +90,8 @@ export default function App() {
             }
           />
           <Route element={<ProtectedRoute />}>
+            <Route path="/admin" element={<AdminRegisterProduct />} />
+            <Route element={<Checkout />} path="/cart/checkout" />
             <Route
               path="/register/address"
               element={

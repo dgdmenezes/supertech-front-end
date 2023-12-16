@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import React from "react";
 import Default from "../templates/Default";
 import CartPageItem from "../molecules/CartPageItem";

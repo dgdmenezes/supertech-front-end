@@ -29,8 +29,7 @@ export default function CardPagination(props) {
 
     props.setSkip(page);
     props.setLimit(page + cardLimitShow);
-    console.log("tudo certo?");
-  }, [URLcount, cardLimitShow, page]);
+  }, [URLcount, cardLimitShow, page, props]);
 
   return (
     <div className={styles.outerPagination}>

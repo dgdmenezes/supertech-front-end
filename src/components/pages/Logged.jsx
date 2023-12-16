@@ -13,6 +13,7 @@ export default function Logged() {
   const [isLoading, setIsLoading] = React.useState(true);
   const token = getToken();
   const navigate = useNavigate();
+  const URLConnection = process.env.REACT_APP_API_URL;
 
   React.useEffect(() => {
     const fetchOptions = {
@@ -21,7 +22,7 @@ export default function Logged() {
       },
     };
 
-    fetch("http://localhost:3001/users/token", fetchOptions)
+    fetch(`${URLConnection}/users/token`, fetchOptions)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);

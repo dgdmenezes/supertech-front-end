@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { GlobalContex } from "../../contexts/GlobalContext";
 
 export default function ProductShow(props) {
