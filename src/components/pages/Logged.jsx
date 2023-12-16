@@ -44,7 +44,7 @@ export default function Logged() {
         removeToken();
         navigate("/");
       });
-  }, [currentUser.role, navigate, setCurrentUser, token]);
+  }, [URLConnection, currentUser.role, navigate, setCurrentUser, token]);
   return isLoading ? (
     <AppLoading />
   ) : (
