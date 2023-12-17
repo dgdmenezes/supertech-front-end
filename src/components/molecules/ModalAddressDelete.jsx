@@ -22,6 +22,8 @@ export default function ModalAddressDelete(props) {
   const navigate = useNavigate();
   const handleClose = () => props.setOpen(false);
 
+  const URLConnection = process.env.REACT_APP_API_URL;
+
   const fetchOptions = {
     method: "DELETE",
     headers: {
@@ -31,7 +33,7 @@ export default function ModalAddressDelete(props) {
   console.log("Aqui" + props.nameAddress);
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:3001/address/delete/${props.address}`, fetchOptions)
+    fetch(`${URLConnection}/address/delete/${props.address}`, fetchOptions)
       .then(() => {
         window.location.reload();
         navigate("/logged");
