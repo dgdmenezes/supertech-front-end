@@ -52,7 +52,7 @@ export default function AddressForm() {
         removeToken();
         navigate("/");
       });
-  }, [navigate, setCurrentUser, token]);
+  }, [navigate, setCurrentUser, token, URLConnection]);
 
   /* React.useEffect(() => {
     fetch(`https://viacep.com.br/ws/${buscaCep}/json/`)
