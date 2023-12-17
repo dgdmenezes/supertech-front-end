@@ -35,7 +35,7 @@ export default function Logged() {
         if (currentUser.role === "user") {
           setShowUser(true);
           setShowAdmin(false);
-        } else {
+        } else if (currentUser.role === "admin") {
           setShowUser(false);
           setShowAdmin(true);
         }

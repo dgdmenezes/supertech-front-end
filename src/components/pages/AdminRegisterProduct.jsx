@@ -14,6 +14,7 @@ export default function AdminRegisterProduct() {
   const [image4, setImage4] = React.useState("");
   const [brand, setBrand] = React.useState("");
   const [model, setModel] = React.useState("");
+  const URLConnection = process.env.REACT_APP_API_URL;
 
   const fetchOptions = {
     method: "POST",
@@ -38,7 +39,7 @@ export default function AdminRegisterProduct() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     console.log("submit");
-    fetch("http://localhost:3001/products/create", fetchOptions).then(() => {
+    fetch(`${URLConnection}/products/create`, fetchOptions).then(() => {
       setName("");
       setDescription("");
       setPrice("");

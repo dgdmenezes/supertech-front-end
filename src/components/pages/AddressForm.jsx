@@ -25,6 +25,8 @@ export default function AddressForm() {
   const [showSuccess, setShowSuccess] = React.useState(false);
   const [showError, setShowError] = React.useState(false);
 
+  const URLConnection = process.env.REACT_APP_API_URL;
+
   const navigate = useNavigate();
   const token = getToken();
 
@@ -35,7 +37,7 @@ export default function AddressForm() {
       },
     };
 
-    fetch("http://localhost:3001/users/token", fetchOptionsToken)
+    fetch(`${URLConnection}/users/token`, fetchOptionsToken)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
