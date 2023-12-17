@@ -84,7 +84,7 @@ export default function AddressForm() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:3001/address/create", fetchOptions)
+    fetch(`${URLConnection}/address/create`, fetchOptions)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
