@@ -30,7 +30,6 @@ export default function LoginForm() {
     e.preventDefault();
     fetch(`${URLConnection}/users/login`, fetchOptions)
       .then((response) => {
-        console.log("Resposta do primeiro console", response);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }

@@ -17,6 +17,8 @@ export default function CardGroup(props) {
 
         if (data.length === 0) {
           setShowNoProdutcts(true);
+        } else {
+          setShowNoProdutcts(false);
         }
       });
   }, [URI]);

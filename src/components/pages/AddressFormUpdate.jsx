@@ -104,7 +104,7 @@ export default function AddressForm() {
         setShowError(true);
       });
   };
-  const autoFillAddress = (cep) => {
+  /*const autoFillAddress = (cep) => {
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
       .then((res) => res.json())
       .then((data) => {
@@ -118,7 +118,7 @@ export default function AddressForm() {
         optionEstado.value = data.uf;
       })
       .catch((err) => console.log(err));
-  };
+  };*/
 
   return (
     <div>

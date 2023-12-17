@@ -6,29 +6,29 @@ export default function NavBarFixedMenu() {
     <div>
       <ul className="nav me-auto">
         <li className="nav-item">
-          <Link
-            to="/category/consoles"
-            className="nav-link  px-2 link-nav-menu"
-          >
-            CONSOLES
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/category/jogos" className="nav-link  px-2 link-nav-menu">
-            JOGOS
+          <Link to="/category/monitor" className="nav-link  px-2 link-nav-menu">
+            MONITORES
           </Link>
         </li>
         <li className="nav-item">
           <Link
-            to="/category/acessorios"
+            to="/category/notebook"
             className="nav-link  px-2 link-nav-menu"
           >
-            ACESSÓRIOS
+            NOTEBOOKS
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/promo" className="nav-link px-2 link-nav-menu">
-            PROMOCOES
+          <Link to="/category/game" className="nav-link  px-2 link-nav-menu">
+            GAMES
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link
+            to="/category/smartfone"
+            className="nav-link px-2 link-nav-menu"
+          >
+            SMARTFONE
           </Link>
         </li>
       </ul>

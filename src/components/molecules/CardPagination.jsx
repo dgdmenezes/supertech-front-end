@@ -15,13 +15,13 @@ export default function CardPagination(props) {
   };
 
   React.useEffect(() => {
-    console.log(URLcount);
     fetch(URLcount)
       .then((res) => res.json())
       .then((data) => {
-        if (data[0] === undefined) {
+        if (data[0] === undefined || data[0].counter <= 12) {
           setCount(1);
-        } else if (data[0].counter > cardLimitShow) {
+          setShowPagination(false);
+        } else {
           setCount(parseInt(data[0].counter / cardLimitShow) + 1);
           setShowPagination(true);
         }
