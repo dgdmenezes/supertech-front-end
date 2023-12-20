@@ -14,7 +14,7 @@ export default function SearchPage() {
   const URLConnection = process.env.REACT_APP_API_URL;
 
   const URL = `${URLConnection}/products/searchbar/find?tags=${searchTag}&skip=${skip}&limit=${limit}`;
-  const URLCount = `${URLConnection}/products/find/count?tags=${searchTag}`;
+  const URLCount = `${URLConnection}/products/searchbar/count?tags=${searchTag}`;
 
   return (
     <Default>
